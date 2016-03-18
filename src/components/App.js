@@ -12,26 +12,36 @@ class App extends Component {
     const controller = new ScrollMagic.Controller({
       globalSceneOptions: {
         triggerHook: "onLeave",
-        duration: "300"
       }
     })
 
-    const tl = new TimelineMax()
+    const enterTl = new TimelineMax({ paused: true })
 
-    tl
-      .add([
-        TweenMax.staggerTo('.blob', 1, {
-          yPercent: 70
-        }, .2)
-      ])
+    enterTl.add(
+      [...this.refs.blobContainer.childNodes].map((el, i) =>
+        TweenMax.to(el, 2.5, {
+          yPercent: Math.round(10 + Math.random() * 60),
+          delay:  Math.random() * .2,
+          ease: Elastic.easeOut
+        })
+      )
+    )
 
     new ScrollMagic.Scene({
-      triggerElement: '.App'
+      triggerElement: '.App',
+      offset: 100,
     })
-    .setTween(tl)
-    .addIndicators()
+    .on('enter', () => enterTl.timeScale(1).restart())
+    .on('leave', () => enterTl.timeScale(1.5).reverse())
     .addTo(controller);
 
+  }
+
+  _handleClickBlob = ({ target }) => {
+    TweenMax.to(target, 2, {
+      yPercent: Math.round(50 + Math.random() * 50),
+      ease: Elastic.easeOut
+    })
   }
 
   render() {
@@ -40,16 +50,28 @@ class App extends Component {
       <div className="App">
 
         <div className="header" />
+        <div className="background" />
 
         <div className="blobs">
+          <div className="header" />
           <div className="topBlob" />
 
-          <div className="flex" >
-            <div className="blob" />
-            <div className="blob" />
-            <div className="blob" />
-            <div className="blob" />
-            <div className="blob" />
+          <div className="flex" ref="blobContainer">
+            <div
+              className="blob"
+              onClick={this._handleClickBlob} />
+            <div
+              className="blob"
+              onClick={this._handleClickBlob} />
+            <div
+              className="blob"
+              onClick={this._handleClickBlob} />
+            <div
+              className="blob"
+              onClick={this._handleClickBlob} />
+            <div
+              className="blob"
+              onClick={this._handleClickBlob} />
           </div>
         </div>
 
