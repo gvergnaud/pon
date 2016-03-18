@@ -19,10 +19,10 @@ class App extends Component {
 
     enterTl.add(
       [...this.refs.blobContainer.childNodes].map((el, i) =>
-        TweenMax.to(el, 2.5, {
+        TweenMax.to(el, .6, {
           yPercent: Math.round(10 + Math.random() * 60),
           delay:  Math.random() * .2,
-          ease: Elastic.easeOut
+          ease: Back.easeOut
         })
       )
     )
