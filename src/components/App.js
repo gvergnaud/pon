@@ -1,47 +1,47 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import '../scss/main.scss'
-import 'gsap'
-import ScrollMagic from 'scrollmagic'
-import 'animation.gsap'
-import 'debug.addIndicators'
+import routes from '../routes'
+import { createHistory } from 'history'
+
+import BlobBackground from './BlobBackground'
+
+
+const history = createHistory()
 
 
 class App extends Component {
 
+  static childContextTypes = {
+    setPage: PropTypes.func.isRequired
+  }
+
+  state = {}
+
+  getChildContext() {
+    return { setPage: this.setPage }
+  }
+
   componentDidMount() {
-    const controller = new ScrollMagic.Controller({
-      globalSceneOptions: {
-        triggerHook: "onLeave",
+
+    history.listen(location => {
+      const route = routes[location.pathname]
+      const { state: { currentRoute }, refs: { routeElement } } = this
+
+      if (!currentRoute) this.setState({ currentRoute: route })
+      else {
+        if (route && route.path !== currentRoute.path) {
+          currentRoute.component.prototype.willAnimateOut.call(routeElement, () => {
+            this.setState({ currentRoute: route })
+          })
+        }
+
       }
     })
 
-    const enterTl = new TimelineMax({ paused: true })
-
-    enterTl.add(
-      [...this.refs.blobContainer.childNodes].map((el, i) =>
-        TweenMax.to(el, .6, {
-          yPercent: Math.round(10 + Math.random() * 60),
-          delay:  Math.random() * .2,
-          ease: Back.easeOut
-        })
-      )
-    )
-
-    new ScrollMagic.Scene({
-      triggerElement: '.App',
-      offset: 100,
-    })
-    .on('enter', () => enterTl.timeScale(1).restart())
-    .on('leave', () => enterTl.timeScale(1.5).reverse())
-    .addTo(controller);
-
   }
 
-  _handleClickBlob = ({ target }) => {
-    TweenMax.to(target, 2, {
-      yPercent: Math.round(50 + Math.random() * 50),
-      ease: Elastic.easeOut
-    })
+  setPage(path) {
+    history.push(path)
   }
 
   render() {
@@ -49,31 +49,13 @@ class App extends Component {
     return (
       <div className="App">
 
-        <div className="header" />
-        <div className="background" />
+        {this.state.currentRoute &&
+          <this.state.currentRoute.component ref="routeElement" />
+        }
 
-        <div className="blobs">
-          <div className="header" />
-          <div className="topBlob" />
-
-          <div className="flex" ref="blobContainer">
-            <div
-              className="blob"
-              onClick={this._handleClickBlob} />
-            <div
-              className="blob"
-              onClick={this._handleClickBlob} />
-            <div
-              className="blob"
-              onClick={this._handleClickBlob} />
-            <div
-              className="blob"
-              onClick={this._handleClickBlob} />
-            <div
-              className="blob"
-              onClick={this._handleClickBlob} />
-          </div>
-        </div>
+        {/*<BlobBackground color="#1ca7a3" height={window.innerHeight * 1.5} />
+        <BlobBackground color="#571b34" height={window.innerHeight * 1.5} />
+        <BlobBackground color="#ba8300" height={window.innerHeight * 1.5} />*/}
 
       </div>
     )

@@ -1,0 +1,41 @@
+@font-face {
+  font-family: 'CircularStd';
+  src: '/public/assets/fonts/CircularStd-Black.otf';
+  src: '/public/assets/fonts/CircularStd-Bold.otf';
+  src: '/public/assets/fonts/CircularStd-Book.otf';
+  font-weight: normal;
+  font-style: normal;
+}
+
+// @font-face {
+//   font-family: 'CircularStd Bold';
+//   src: '/public/assets/fonts/CircularStd-Bold.otf';
+//   font-weight: normal;
+//   font-style: normal;
+// }
+//
+// @font-face {
+//   font-family: 'CircularStd Book';
+//   src: '/public/assets/fonts/CircularStd-Book.otf';
+//   font-weight: normal;
+//   font-style: normal;
+// }
+
+
+
+
+$font-title: 'CircularStd', sans-serif;
+
+$ease-in: cubic-bezier(.78,.02,.96,.51);
+$ease-in-heavy: cubic-bezier(1,.01,.88,1);
+$ease-out: cubic-bezier(.05,.67,.26,1.01);
+$ease-out-heavy: cubic-bezier(.08,.97,.22,.99);
+$ease-in-out: cubic-bezier(.56,0,.46,.99);
+$ease-in-out-heavy: cubic-bezier(.86,.01,.16,.99);
+$ease-in-out-back: cubic-bezier(.77,-0.29,.12,1);
+$ease-in-out-bounce: cubic-bezier(.31,2.85,.1,.42);
+
+
+@function shadow($color: black) {
+  @return 0 5px 7px rgba($color, .25);
+}
