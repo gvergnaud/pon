@@ -28,13 +28,10 @@ class App extends Component {
       const { state: { currentRoute }, refs: { routeElement } } = this
 
       if (!currentRoute) this.setState({ currentRoute: route })
-      else {
-        if (route && route.path !== currentRoute.path) {
-          currentRoute.component.prototype.willAnimateOut.call(routeElement, () => {
-            this.setState({ currentRoute: route })
-          })
-        }
-
+      else if (route && route.path !== currentRoute.path) {
+        currentRoute.component.prototype.willAnimateOut.call(routeElement, () => {
+          this.setState({ currentRoute: route })
+        })
       }
     })
 
@@ -49,13 +46,16 @@ class App extends Component {
     return (
       <div className="App">
 
+        <div className="lines">
+          <div className="line line--first" />
+          <div className="line line--second" />
+          <div className="line line--third" />
+          <div className="line line--fourth" />
+        </div>
+
         {this.state.currentRoute &&
           <this.state.currentRoute.component ref="routeElement" />
         }
-
-        {/*<BlobBackground color="#1ca7a3" height={window.innerHeight * 1.5} />
-        <BlobBackground color="#571b34" height={window.innerHeight * 1.5} />
-        <BlobBackground color="#ba8300" height={window.innerHeight * 1.5} />*/}
 
       </div>
     )

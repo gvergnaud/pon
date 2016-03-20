@@ -4,6 +4,8 @@
 body {
   padding: 0;
   margin: 0;
+  font-family: $font-title;
+  box-sizing: border-box;
 }
 
 
@@ -12,4 +14,27 @@ body {
   font-family: $font-title;
   text-transform: uppercase;
   font-size: 5rem;
+}
+
+
+.line {
+  position: fixed;
+  width: 1px;
+  height: 100%;
+  z-index: -1;
+  top: 0;
+
+  background-color: $color-gray-light;
+
+  &--first {
+    left: 18.75%;
+  }
+
+  &--second {
+    left: 50%;
+  }
+
+  &--third {
+    left: 81.25%;
+  }
 }

@@ -75,6 +75,10 @@
     top: 0;
     left: 0;
     transition: background-color 1.7s $ease-out-heavy .6s;
+
+    &--reversed {
+      height: 135%;
+    }
   }
 
   .blobContainer{
@@ -83,6 +87,12 @@
     left:0;
     width: 100%;
     align-items: flex-end;
+
+    &--reversed {
+      bottom: 100%;
+      top: initial;
+      align-items: flex-start;
+    }
   }
 
   .flex {
@@ -100,8 +110,7 @@
     width: 12.5%;
     margin-right: 12.5%;
 
-    border-bottom-left-radius: 150px;
-    border-bottom-right-radius: 150px;
+    border-radius: 150px;
 
     transform: translateY(-101%);
     transition: box-shadow .8s ease;
@@ -110,27 +119,58 @@
     &.shadow {
       box-shadow: 0px -10px 20px rgba(black, .09) inset;
     }
+
+    &--reversed {
+      transform: translateY(101%);
+
+      &.shadow {
+        box-shadow: 0px 10px 20px rgba(black, .09) inset;
+      }
+    }
   }
 
 
   .antiBlobContainer {
     align-items: flex-start;
+
+    &--reversed {
+      top: 0;
+      align-items: flex-end;
+    }
   }
 
-    .antiBlob{
+    .antiBlob {
     height: 100%;
     width: 12.5%;
     margin-left: 12.5%;
     background: white;
 
-    border-top-left-radius: 150px;
-    border-top-right-radius: 150px;
+    border-radius: 150px;
 
     transform: translateY(101%);
     transition: box-shadow .8s ease;
 
+    &:nth-child(1)::before {
+      content: '';
+      position: absolute;
+      width: 1px;
+      height: 100%;
+      z-index: -1;
+      top: 0;
+      left: 50%;
+      background-color: $color-gray-light;
+    }
+
     &.shadow {
       box-shadow: 0px -10px 20px rgba(black, .09);
+    }
+
+    &--reversed {
+      transform: translateY(-101%);
+
+      &.shadow {
+        box-shadow: 0px 10px 20px rgba(black, .09);
+      }
     }
   }
 }

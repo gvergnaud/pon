@@ -1,3 +1,50 @@
-.JaiyeCaseStudy {
-  
+@import "../../scss/settings.scss";
+
+
+.Jaiye {
+  &-showCase {
+    margin-top: 100px;
+
+    &-item {
+      display: inline-block;
+      width: 50%;
+      margin-bottom: 50px;
+
+      &:nth-child(1) {
+        margin-left: 50%;
+      }
+
+      &:nth-child(even) {
+        text-align: left;
+        transform: translateY(-50%);
+
+        .label {
+          text-align: left;
+          transform: translate(90%, -250%);
+        }
+      }
+
+      &:nth-child(odd) {
+        text-align: right;
+
+        .label {
+          text-align: right;
+          transform: translate(-20%, -250%);
+        }
+      }
+
+
+      .wireframe {
+        max-width: 100%;
+        height: auto;
+        border-radius: 25px;
+        box-shadow: 0 5px 30px rgba(black, .3);
+      }
+
+      .label {
+        width: 60%;
+        font-size: 50px;
+      }
+    }
+  }
 }

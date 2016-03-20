@@ -64,9 +64,14 @@ class Home extends Component {
       scale: 5,
       opacity: 0,
       ease: Power3.easeOut,
+    })
+    TweenMax.to('.Home-goButton', .4, {
+      opacity: 0,
+      delay: .4,
+      ease: Power3.easeInOut,
       onComplete: done
     })
-    this.animateProjectOut(this.refs[this.state.selectedProj])
+    // this.animateProjectOut(this.refs[this.state.selectedProj])
   }
 
   animateProjectIn = (project) => {

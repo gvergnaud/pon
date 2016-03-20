@@ -14,9 +14,7 @@ const project = projects.rochard
 
 class RochardCaseStudy extends Component {
 
-  static propTypes = {
-
-  }
+  static propTypes = {}
 
   state = { blob: false }
 
@@ -46,7 +44,6 @@ class RochardCaseStudy extends Component {
       offset: window.innerHeight / 2,
     })
       .on('enter', () => this.setState({ blob: true }))
-      .on('leave', () => this.setState({ blob: false }))
       .addTo(controller)
   }
 

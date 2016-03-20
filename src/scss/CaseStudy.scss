@@ -1,0 +1,98 @@
+@import "../scss/settings.scss";
+
+.CaseStudy {
+
+  &-blob {
+    position: relative;
+  }
+
+  &-container {
+    z-index: 5;
+    width: 62.5%;
+    max-width: 1080px;
+    margin: 500px auto 0;
+  }
+
+  &-title {
+    position: absolute;
+    left: 15%;
+    width: 40%;
+    top: 43%;
+    transform: translateY(-50%);
+    margin: 0;
+    z-index: 2;
+
+    &--bottom {
+      top: 100%;
+    }
+  }
+
+  &-infoBlock {
+
+    height: 100px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    color: $color-gray-medium;
+
+    .title {
+      flex: 3;
+      text-transform: uppercase;
+      font-size: 30px;
+      letter-spacing: 5px;
+      line-height: 45px;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    .infos {
+      flex: 5;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+
+      font-size: 14px;
+
+      .info-item {
+        &-title {
+          text-transform: uppercase;
+          font-weight: bold;
+          margin: 0;
+          letter-spacing: 3px;
+        }
+
+        &-content {
+          letter-spacing: 3px;
+          margin-top: 10px;
+          font-weight: 300;
+        }
+      }
+    }
+  }
+
+  .description {
+    font-size: 14px;
+    position: relative;
+    color: $color-gray-medium;
+    line-height: 28px;
+    letter-spacing: 1px;
+    font-weight: 300;
+
+    width: 40%;
+    margin: 50px 0;
+  }
+
+  .categoryTitle {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    text-align: center;
+
+    font-size: 200px;
+    text-transform: uppercase;
+    color: white;
+    text-shadow: 0 5px 20px rgba(black, .1);
+    z-index: -1;
+  }
+}
