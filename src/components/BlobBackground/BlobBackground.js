@@ -22,13 +22,13 @@ class BlobBackground extends Component {
     this.tl.add([
       ...[...this.refs.blobContainer.childNodes].map((el, i) =>
         TweenMax.to(el, 2.3, {
-          yPercent: reversed ? - Math.round(10 + Math.random() * 6) : Math.round(10 + Math.random() * 35),
+          yPercent: reversed ? - Math.round(12 + Math.random() * 6) : Math.round(12 + Math.random() * 35),
           ease: Elastic.easeOut
         })
       ),
       ...[...this.refs.antiBlobContainer.childNodes].map(el =>
         TweenMax.to(el, 2.3, {
-          yPercent: reversed ? Math.round(10 + Math.random() * 35) : - Math.round(10 + Math.random() * 6),
+          yPercent: reversed ? Math.round(12 + Math.random() * 35) : - Math.round(12 + Math.random() * 6),
           ease: Elastic.easeOut
         })
       )

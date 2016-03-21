@@ -1,0 +1,8 @@
+@keyframes enter {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+.UIImage {
+  animation: enter 1s ease;
+}

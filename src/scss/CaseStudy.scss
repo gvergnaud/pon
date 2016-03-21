@@ -1,5 +1,10 @@
 @import "../scss/settings.scss";
 
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
 .CaseStudy {
 
   &-blob {
@@ -27,9 +32,22 @@
     }
   }
 
+  &-scrollButton {
+    position: absolute;
+    color: white;
+    bottom: 140px;
+    right: 170px;
+    text-shadow: shadow();
+    z-index: 2;
+    font-size: 14px;
+    text-transform: uppercase;
+
+    animation: fadeIn .4s ease ;
+  }
+
   &-infoBlock {
 
-    height: 100px;
+    height: 130px;
 
     display: flex;
     justify-content: space-between;
@@ -37,7 +55,7 @@
     color: $color-gray-medium;
 
     .title {
-      flex: 3;
+      width: 30%;
       text-transform: uppercase;
       font-size: 30px;
       letter-spacing: 5px;
@@ -47,10 +65,10 @@
     }
 
     .infos {
-      flex: 5;
+      width: 65%;
       display: flex;
       justify-content: space-between;
-      align-items: flex-end;
+      align-items: flex-start;
 
       font-size: 14px;
 
@@ -60,12 +78,14 @@
           font-weight: bold;
           margin: 0;
           letter-spacing: 3px;
+          font-size: 12px;
         }
 
         &-content {
           letter-spacing: 3px;
           margin-top: 10px;
           font-weight: 300;
+          font-size: 12px;
         }
       }
     }
@@ -94,5 +114,17 @@
     color: white;
     text-shadow: 0 5px 20px rgba(black, .1);
     z-index: -1;
+
+    &--lowercase {
+      text-transform: lowercase;
+    }
+  }
+
+  .sectionTitle {
+    font-size: 80px;
+    font-weight: bold;
+    letter-spacing: 8px;
+    transform: translateY(700px);
+    z-index: 10;
   }
 }

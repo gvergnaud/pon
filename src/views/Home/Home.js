@@ -143,8 +143,8 @@ class Home extends Component {
     this.setState({ selectedProj: prevProj })
   }
 
-  handleButtonMouseLeave = ({ target }) => {
-    target.classList.add('Home-goButton--mouseLeave')
+  handleButtonMouseLeave = (e) => {
+    e.target.classList.add('Home-goButton--mouseLeave')
   }
 
   render() {
@@ -154,7 +154,7 @@ class Home extends Component {
     const { setPage } = this.context
 
     return (
-      <div className="Home">
+      <div className="Home" onClick={this.selectNext}>
 
         <BlobBackground color={color} />
 
@@ -176,7 +176,10 @@ class Home extends Component {
                 className={`Home-goButton ${isSelected ? 'Home-goButton--selected' : ''}`}
                 style={{ color }}
                 onMouseLeave={this.handleButtonMouseLeave}
-                onClick={() => setPage(path)}>
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setPage(path)
+                }}>
                 Go
               </div>
 

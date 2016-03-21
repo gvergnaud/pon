@@ -23,15 +23,14 @@ class RochardCaseStudy extends Component {
   }
 
   willAnimateIn({ refs }) {
-    const tl = new TimelineMax({ paused: true })
-
-    tl
-      .to(window, 1, {
-        scrollTo: { y: window.innerHeight / 1.5 },
-        ease: Power4.easeOut
-      });
-
-    tl.restart()
+    // scroll
+    TweenMax.fromTo(window, 1, {
+      scrollTo: { y: 0 },
+      ease: Power4.easeInOut
+    }, {
+      scrollTo: { y: window.innerHeight },
+      ease: Power4.easeInOut
+    })
 
     const controller = new ScrollMagic.Controller({
       globalSceneOptions: {

@@ -9,6 +9,7 @@ import 'gsap'
 import 'gsap.ScrollToPlugin'
 
 import BlobBackground from '../../components/BlobBackground'
+import UIImage from '../../components/UIImage'
 
 
 const project = projects.jaiye
@@ -30,17 +31,19 @@ class JaiyeCaseStudy extends Component {
   willAnimateIn({ refs }) {
 
     // scroll
-    TweenMax.to(window, 1, {
+    TweenMax.fromTo(window, 1, {
+      scrollTo: { y: 0 },
+      ease: Power4.easeInOut
+    }, {
       scrollTo: { y: window.innerHeight },
       ease: Power4.easeInOut
     })
 
     this.controller = new ScrollMagic.Controller({
       globalSceneOptions: {
-        triggerHook: "onLeave",
+        triggerHook: "onLeave"
       }
     })
-
 
 
     new ScrollMagic.Scene({
@@ -50,6 +53,8 @@ class JaiyeCaseStudy extends Component {
       .on('enter', () => this.setState({ blob: true }))
       .addTo(this.controller)
 
+
+
     new ScrollMagic.Scene({
       triggerElement: refs.bottomBlob,
       offset: - window.innerHeight * .8,
@@ -57,37 +62,62 @@ class JaiyeCaseStudy extends Component {
       .on('enter', () => this.setState({ bottomBlob: true }))
       .addTo(this.controller)
 
+
+
+    // new ScrollMagic.Scene({
+    //   triggerElement: refs.topBlob,
+    //   offset: 20,
+    // })
+    //   .on('leave', () => setTimeout(() => {
+    //     if (document.body.scrollTop < 20) this.context.setPage('/')
+    //   }, 1500))
+    //   .addTo(this.controller)
+
+
     new ScrollMagic.Scene({
-      triggerElement: refs.topBlob,
-      offset: 20,
+      triggerElement: refs.bottomBlob,
+      offset: window.innerHeight / 2
     })
-      .on('leave', () => setTimeout(() => {
-        console.log(document.body.scrollTop)
-        if (document.body.scrollTop < 20) this.context.setPage('/')
+      .on('start', () => setTimeout(() => {
+        if (document.body.scrollTop + window.innerHeight > document.body.scrollHeight - 20) {
+          this.context.setPage(nextProj.path)
+        }
       }, 1500))
       .addTo(this.controller)
+
 
     const tl = new TimelineMax()
 
     tl
       .to(refs.firstTitle, 2, {
-        y: -50,
+        y: 30,
+        ease: Power1.easeOut
+      }, 'first')
+      .to(refs.subtitle, 2, {
+        delay: 1,
+        y: 100,
         ease: Power1.easeOut
       }, 'first')
       .staggerFrom('.firstSection .wireframe', 1.7, {
         delay: .7,
-        y: 350,
+        y: 250,
         ease: Power1.easeOut
       }, .5, 'first')
-      .to(refs.secondTitle, 1, {
-        y: -50,
+      .staggerFrom('.firstSection .wireframe.odd', 1, {
+        delay: 1,
+        rotation: 12,
         ease: Power1.easeOut
-      }, 'second')
-      .staggerFrom('.secondSection .wireframe', 2, {
-        delay: .2,
-        y: 350,
+      }, 1.1, 'first')
+      .staggerFrom('.firstSection .wireframe.even', 1, {
+        delay: 1.5,
+        rotation: -12,
         ease: Power1.easeOut
-      }, .6, 'second')
+      }, 1.1, 'first')
+      .staggerFrom('.firstSection .label', 2, {
+        delay: .5,
+        y: 450,
+        ease: Power1.easeOut
+      }, .57, 'first')
 
     new ScrollMagic.Scene({
       triggerElement: refs.container,
@@ -95,8 +125,80 @@ class JaiyeCaseStudy extends Component {
       duration: tl.totalDuration() * window.innerHeight,
     })
       .setTween(tl)
-      .addIndicators()
+      .on('enter', () => {
+        const infoTl = new TimelineMax()
+
+        TweenMax.set(refs.infotitle, {
+          y: 20,
+          opacity: 0
+        })
+
+        TweenMax.set('.Jaiye .info-item', {
+          y: 20,
+          opacity: 0
+        })
+
+        infoTl
+          .fromTo(refs.infotitle, .2, {
+            y: 20,
+            opacity: 0
+          }, {
+            y: 0,
+            opacity: 1,
+            delay: .5,
+          })
+          .staggerFromTo('.Jaiye .info-item', .3, {
+            y: 20,
+            opacity: 0
+          }, {
+            y: 0,
+            opacity: 1
+          }, .1)
+          .fromTo(refs.infodescription, .4, {
+            y: 20,
+            opacity: 0
+          }, {
+            y: 0,
+            opacity: 1,
+            delay: .5,
+          })
+
+      })
       .addTo(this.controller)
+
+
+    const secondTl = new TimelineMax()
+    secondTl
+      .fromTo(refs.secondTitle, 2, {
+        y: -400,
+      }, {
+        y: -100,
+        ease: Power1.easeOut
+      }, 'second')
+      .staggerFrom('.secondSection .wireframe', 1.7, {
+        y: 250,
+        ease: Power1.easeOut
+      }, 1.2, 'second')
+      .staggerFrom('.secondSection .wireframe.odd', 1, {
+        delay: .4,
+        rotation: 10,
+        ease: Power1.easeOut
+      }, 1.2, 'second')
+      .staggerFrom('.secondSection .wireframe.even', 1, {
+        delay: 1,
+        rotation: -10,
+        ease: Power1.easeOut
+      }, 1.2, 'second')
+
+
+    new ScrollMagic.Scene({
+      triggerElement: refs.secondSection,
+      offset: - window.innerHeight * 1.3,
+      duration: secondTl.totalDuration() * window.innerHeight,
+    })
+      .setTween(secondTl)
+      .addTo(this.controller)
+
   }
 
   willAnimateOut(done) {
@@ -120,6 +222,9 @@ class JaiyeCaseStudy extends Component {
             style={{ color }}>
             {title}
           </h1>
+          <div className="CaseStudy-scrollButton">
+            scroll
+          </div>
           <BlobBackground isBlob={blob} color={color} />
         </div>
 
@@ -127,7 +232,7 @@ class JaiyeCaseStudy extends Component {
 
           <div className="CaseStudy-infoBlock">
 
-            <h2 className="title">Jaiye Music App</h2>
+            <h2 className="title" ref="infotitle">Jaiye Music App</h2>
 
             <div className="infos">
               <article className="info-item">
@@ -150,67 +255,84 @@ class JaiyeCaseStudy extends Component {
 
           </div>
 
-          <p className="description">Jaiye, is the first musical streaming service dedicated to Afro sounds. <br />
+          <p className="description" ref="infodescription">Jaiye, is the first musical streaming service dedicated to Afro sounds. <br />
             Entertain people by providing a unique African music platform is the goal of the application.</p>
 
 
           <h1 className="categoryTitle" ref="firstTitle">ux design</h1>
 
+          <h3 className="sectionTitle" ref="subtitle" style={{ color }}>
+            wireframes
+          </h3>
+
           <section className="Jaiye-showCase firstSection" ref="showcase">
             <div className="Jaiye-showCase-item">
-              <img className="wireframe" height="700" width="335" src="http://lorempixel.com/335/700" />
+              <UIImage className="wireframe odd" height={700} width={335} src="/public/assets/images/02_Jaiye/01@2x.png" />
               <h3 className="label" style={{ color }}>Login Screen</h3>
             </div>
 
             <div className="Jaiye-showCase-item">
-              <img className="wireframe" height="700" width="335" src="http://lorempixel.com/335/700" />
-              <h3 className="label" style={{ color }}>Login Screen</h3>
+              <UIImage className="wireframe even" height={700} width={335} src="/public/assets/images/02_Jaiye/02@2x.png" />
+              <h3 className="label" style={{ color }}>Registration tunnel</h3>
             </div>
 
             <div className="Jaiye-showCase-item">
-              <img className="wireframe" height="700" width="335" src="http://lorempixel.com/335/700" />
-              <h3 className="label" style={{ color }}>Login Screen</h3>
+              <UIImage className="wireframe odd" height={700} width={335} src="/public/assets/images/02_Jaiye/03@2x.png" />
+              <h3 className="label" style={{ color }}>My playlist</h3>
             </div>
 
             <div className="Jaiye-showCase-item">
-              <img className="wireframe" height="700" width="335" src="http://lorempixel.com/335/700" />
-              <h3 className="label" style={{ color }}>Login Screen</h3>
+              <UIImage className="wireframe even" height={700} width={335} src="/public/assets/images/02_Jaiye/04@2x.png" />
+              <h3 className="label" style={{ color }}>Artist view</h3>
             </div>
 
             <div className="Jaiye-showCase-item">
-              <img className="wireframe" height="700" width="335" src="http://lorempixel.com/335/700" />
-              <h3 className="label" style={{ color }}>Login Screen</h3>
+              <UIImage className="wireframe odd" height={700} width={335} src="/public/assets/images/02_Jaiye/05@2x.png" />
+              <h3 className="label" style={{ color }}>Album view</h3>
+            </div>
+
+            <div className="Jaiye-showCase-item">
+              <UIImage className="wireframe even" height={700} width={335} src="/public/assets/images/02_Jaiye/06@2x.png" />
+              <h3 className="label" style={{ color }}>Album on scroll view</h3>
+            </div>
+
+            <div className="Jaiye-showCase-item">
+              <UIImage className="wireframe odd" height={700} width={335} src="/public/assets/images/02_Jaiye/07@2x.png" />
+              <h3 className="label" style={{ color }}>Search view</h3>
+            </div>
+
+            <div className="Jaiye-showCase-item">
+              <UIImage className="wireframe even" height={700} width={335} src="/public/assets/images/02_Jaiye/08@2x.png" />
+              <h3 className="label" style={{ color }}>Player view</h3>
+            </div>
+
+            <div className="Jaiye-showCase-item">
+              <UIImage className="wireframe odd" height={700} width={335} src="/public/assets/images/02_Jaiye/09@2x.png" />
+              <h3 className="label" style={{ color }}>Option view</h3>
             </div>
           </section>
 
           <h1 className="categoryTitle" ref="secondTitle">ui design</h1>
 
-          <section className="Jaiye-showCase secondSection" ref="showcase">
-            <div className="Jaiye-showCase-item">
-              <img className="wireframe" height="700" width="335" src="http://lorempixel.com/335/700" />
-              <h3 className="label" style={{ color }}>Login Screen</h3>
-            </div>
+          <span ref="secondSection">
+            <section className="Jaiye-showCase secondSection">
+              <div className="Jaiye-showCase-item">
+                <UIImage className="wireframe odd" height={700} width={335} src="/public/assets/images/02_Jaiye/10@2x.png" />
+              </div>
 
-            <div className="Jaiye-showCase-item">
-              <img className="wireframe" height="700" width="335" src="http://lorempixel.com/335/700" />
-              <h3 className="label" style={{ color }}>Login Screen</h3>
-            </div>
+              <div className="Jaiye-showCase-item">
+                <UIImage className="wireframe even" height={700} width={335} src="/public/assets/images/02_Jaiye/11@2x.png" />
+              </div>
 
-            <div className="Jaiye-showCase-item">
-              <img className="wireframe" height="700" width="335" src="http://lorempixel.com/335/700" />
-              <h3 className="label" style={{ color }}>Login Screen</h3>
-            </div>
+              <div className="Jaiye-showCase-item">
+                <UIImage className="wireframe odd" height={700} width={335} src="/public/assets/images/02_Jaiye/12@2x.png" />
+              </div>
 
-            <div className="Jaiye-showCase-item">
-              <img className="wireframe" height="700" width="335" src="http://lorempixel.com/335/700" />
-              <h3 className="label" style={{ color }}>Login Screen</h3>
-            </div>
-
-            <div className="Jaiye-showCase-item">
-              <img className="wireframe" height="700" width="335" src="http://lorempixel.com/335/700" />
-              <h3 className="label" style={{ color }}>Login Screen</h3>
-            </div>
-          </section>
+              <div className="Jaiye-showCase-item">
+                <UIImage className="wireframe even" height={700} width={335} src="/public/assets/images/02_Jaiye/13@2x.png" />
+              </div>
+            </section>
+          </span>
 
         </div>
 

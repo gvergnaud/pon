@@ -35,6 +35,16 @@ class App extends Component {
       }
     })
 
+    window.addEventListener('resize', this.handleResize)
+
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize)
+  }
+
+  handleResize = () => {
+    this.forceUpdate()
   }
 
   setPage(path) {
