@@ -9,7 +9,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/static/'
+    publicPath: '/dist/'
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
@@ -43,6 +43,10 @@ module.exports = {
       "TweenMax": path.resolve('node_modules', 'gsap/src/uncompressed/TweenMax.js'),
       "TimelineLite": path.resolve('node_modules', 'gsap/src/uncompressed/TimelineLite.js'),
       "TimelineMax": path.resolve('node_modules', 'gsap/src/uncompressed/TimelineMax.js'),
+      "gsap.CSSPlugin": path.resolve('node_modules', 'gsap/src/uncompressed/plugins/CSSPlugin.js'),
+      "gsap.TextPlugin": path.resolve('node_modules', 'gsap/src/uncompressed/plugins/TextPlugin.js'),
+      "gsap.ScrollToPlugin": path.resolve('node_modules', 'gsap/src/uncompressed/plugins/ScrollToPlugin.js'),
+      "gsap.CSSRulePlugin": path.resolve('node_modules', 'gsap/src/uncompressed/plugins/CSSRulePlugin.js'),
       "ScrollMagic": path.resolve('node_modules', 'scrollmagic/scrollmagic/uncompressed/ScrollMagic.js'),
       "animation.gsap": path.resolve('node_modules', 'scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap.js'),
       "debug.addIndicators": path.resolve('node_modules', 'scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators.js')

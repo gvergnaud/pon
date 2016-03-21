@@ -5,7 +5,7 @@ import DylerzCaseStudy from './views/DylerzCaseStudy'
 
 export default {
 
-  default: 'home',
+  default: '/',
 
   '/': {
     path: '/',

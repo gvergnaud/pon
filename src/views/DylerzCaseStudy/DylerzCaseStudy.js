@@ -175,7 +175,6 @@ class DylerzCaseStudy extends Component {
       //
       //    TweenMax
       //  })
-      //  .addIndicators()
       //  .addTo(this.controller)
   }
 
@@ -276,7 +275,7 @@ class DylerzCaseStudy extends Component {
                       className="Dylerz-showCase-computer-screen"
                       height={2800}
                       width={900}
-                      src="/public/assets/images/03_DYLERZ/01_Homepage@2x.png" />
+                      src="/public/assets/images/03_DYLERZ/01_Homepage@2x.jpg" />
                   </span>
                 </span>
               </div>

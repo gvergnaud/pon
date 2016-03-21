@@ -27,7 +27,7 @@ class App extends Component {
       const route = routes[location.pathname]
       const { state: { currentRoute }, refs: { routeElement } } = this
 
-      if (!currentRoute) this.setState({ currentRoute: route })
+      if (!currentRoute) this.setState({ currentRoute: route || routes[routes.default] })
       else if (route && route.path !== currentRoute.path) {
         currentRoute.component.prototype.willAnimateOut.call(routeElement, () => {
           this.setState({ currentRoute: route })
