@@ -1,3 +1,58 @@
-.RochardCaseStudy {
-  
+.Rochard {
+  &-showCase {
+    margin: 120px 0 400px;
+
+    display: flex;
+    flex-direction: column;
+
+    &-item {
+      margin-bottom: 50px;
+
+      width: 100%;
+      left: 0;
+
+      &:nth-child(1) {
+        margin-top: 240px;
+      }
+
+      &:nth-child(even) {
+        .label {
+          right: 18.75%;
+        }
+
+        .maquette {
+          left: 0;
+        }
+      }
+
+      &:nth-child(odd) {
+
+        .label {
+          left: 18.75%;
+        }
+
+        .maquette {
+          right: 0;
+        }
+      }
+
+
+      .maquette {
+        position: absolute;
+        width: 55%;
+        box-shadow: 0 5px 30px rgba(black, .2);
+        z-index: 2;
+      }
+
+      .label {
+        position: absolute;
+        font-size: 90px;
+        height: 90px;
+
+        z-index: 3;
+        transform: translateY(175%);
+        // text-shadow: 0 5px 15px rgba(black, .1);
+      }
+    }
+  }
 }

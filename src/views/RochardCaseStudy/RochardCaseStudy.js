@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from 'react'
+import './RochardCaseStudy.scss'
+import '../../scss/CaseStudy.scss'
 import projects from '../../projects'
 import ScrollMagic from 'ScrollMagic'
 import 'animation.gsap'
@@ -7,22 +9,27 @@ import 'gsap'
 import 'gsap.ScrollToPlugin'
 
 import BlobBackground from '../../components/BlobBackground'
+import UIImage from '../../components/UIImage'
 
 
 const project = projects.rochard
+const nextProj = projects.jaiye
 
 
 class RochardCaseStudy extends Component {
 
-  static propTypes = {}
+  static contextTypes = {
+    setPage: PropTypes.func.isRequired
+  }
 
-  state = { blob: false }
+  state = { blob: false, bottomBlob: false }
 
   componentDidMount() {
     this.willAnimateIn(this)
   }
 
   willAnimateIn({ refs }) {
+
     // scroll
     TweenMax.fromTo(window, 1, {
       scrollTo: { y: 0 },
@@ -32,29 +39,232 @@ class RochardCaseStudy extends Component {
       ease: Power4.easeInOut
     })
 
-    const controller = new ScrollMagic.Controller({
+    this.controller = new ScrollMagic.Controller({
       globalSceneOptions: {
-        triggerHook: "onLeave",
+        triggerHook: "onLeave"
       }
     })
 
+
     new ScrollMagic.Scene({
-      triggerElement: refs.blobBg,
-      offset: window.innerHeight / 2,
+      triggerElement: refs.topBlob,
+      offset: window.innerHeight * .3,
     })
       .on('enter', () => this.setState({ blob: true }))
-      .addTo(controller)
+      .addTo(this.controller)
+
+
+
+    new ScrollMagic.Scene({
+      triggerElement: refs.bottomBlob,
+      offset: - window.innerHeight * .8,
+    })
+      .on('enter', () => this.setState({ bottomBlob: true }))
+      .addTo(this.controller)
+
+
+
+    new ScrollMagic.Scene({
+      triggerElement: refs.bottomBlob,
+      offset: window.innerHeight / 2
+    })
+      .on('start', () => setTimeout(() => {
+        if (document.body.scrollTop + window.innerHeight > document.body.scrollHeight - 20) {
+          this.context.setPage(nextProj.path)
+        }
+      }, 1500))
+      .addTo(this.controller)
+
+
+
+    /* ----------------------------------------- *
+            CaseStudy
+    * ----------------------------------------- */
+
+    const tl = new TimelineMax()
+
+    tl
+      .fromTo(refs.firstTitle, 3, {
+        y: -250,
+      }, {
+        y: 100,
+        ease: Power1.easeOut
+      }, 'first')
+      // .staggerFrom('.maquette', 1.7, {
+      //   y: 250,
+      //   ease: Power1.easeOut
+      // }, 1.2, 'first')
+      .staggerFrom('.label', 1.7, {
+        delay: .5,
+        yPercent: 350,
+        ease: Power1.easeOut
+      }, 1.1, 'first')
+
+
+    new ScrollMagic.Scene({
+      triggerElement: refs.container,
+      offset: - window.innerHeight,
+      duration: tl.totalDuration() * window.innerHeight,
+    })
+      .setTween(tl)
+      .on('enter', () => {
+        const infoTl = new TimelineMax()
+
+        TweenMax.set(refs.infotitle, {
+          y: 20,
+          opacity: 0
+        })
+
+        TweenMax.set('.Rochard .info-item', {
+          y: 20,
+          opacity: 0
+        })
+
+        infoTl
+          .fromTo(refs.infotitle, .2, {
+            y: 20,
+            opacity: 0
+          }, {
+            y: 0,
+            opacity: 1,
+            delay: .5,
+          })
+          .staggerFromTo('.Rochard .info-item', .3, {
+            y: 20,
+            opacity: 0
+          }, {
+            y: 0,
+            opacity: 1
+          }, .1)
+          .fromTo(refs.infodescription, .4, {
+            y: 20,
+            opacity: 0
+          }, {
+            y: 0,
+            opacity: 1,
+            delay: .5,
+          })
+
+      })
+      .addTo(this.controller)
   }
 
   willAnimateOut(done) {
     done()
   }
 
+
+  componentWillUnmount() {
+    this.controller.destroy()
+  }
+
   render() {
+
+    const { color, title } = project
+    const { blob, bottomBlob } = this.state
+
     return (
-      <div className="RochardCaseStudy">
-        <div ref="blobBg">
-          <BlobBackground isBlob={this.state.blob} color={project.color} />
+      <div className="Rochard CaseStudy">
+        <div className="CaseStudy-blob" ref="topBlob" style={{ height: window.innerHeight }}>
+          <h1
+            className="CaseStudy-title projectTitle"
+            style={{ color }}>
+            {title}
+          </h1>
+          <div className="CaseStudy-scrollButton">
+            scroll
+          </div>
+          <BlobBackground isBlob={blob} color={color} />
+        </div>
+
+        <div className="CaseStudy-container" ref="container">
+
+          <div className="CaseStudy-infoBlock">
+
+            <h2 className="title" ref="infotitle">appartement  rochard</h2>
+
+            <div className="infos">
+              <article className="info-item">
+                <h4 className="info-item-title">Role</h4>
+                <p className="info-item-content">ui designer</p>
+              </article>
+              <article className="info-item">
+                <h4 className="info-item-title">context</h4>
+                <p className="info-item-content">freelance</p>
+              </article>
+              <article className="info-item">
+                <h4 className="info-item-title">Device</h4>
+                <p className="info-item-content">mobile</p>
+              </article>
+              <article className="info-item">
+                <h4 className="info-item-title">Date</h4>
+                <p className="info-item-content">2016</p>
+              </article>
+            </div>
+
+          </div>
+
+          <p className="description" ref="infodescription">Appartement Rochard is a fresh brand create in Paris by Martin Rochard. The concept of the brand is to highlight the afriacan style with some modern style.</p>
+
+
+          <h1 className="categoryTitle" ref="firstTitle">ui design</h1>
+
+          <section className="Rochard-showCase firstSection" ref="showcase">
+            <div className="Rochard-showCase-item" style={{ height: window.innerHeight }}>
+              <UIImage
+                className="maquette odd"
+                src="/public/assets/images/01_Appartement_Rochard/02@2x.png" />
+              <h3 className="label" style={{ color }}>lookbook</h3>
+            </div>
+
+            <div className="Rochard-showCase-item" style={{ height: window.innerHeight }}>
+              <UIImage
+                className="maquette odd"
+                src="/public/assets/images/01_Appartement_Rochard/03@2x.png" />
+              <h3 className="label" style={{ color }}>informations</h3>
+            </div>
+
+            <div className="Rochard-showCase-item" style={{ height: window.innerHeight }}>
+              <UIImage
+                className="maquette odd"
+                src="/public/assets/images/01_Appartement_Rochard/04@2x.png" />
+              <h3 className="label" style={{ color }}>amis</h3>
+            </div>
+
+            <div className="Rochard-showCase-item" style={{ height: window.innerHeight }}>
+              <UIImage
+                className="maquette odd"
+                src="/public/assets/images/01_Appartement_Rochard/05@2x.png" />
+              <h3 className="label" style={{ color }}>parutions</h3>
+            </div>
+
+            <div className="Rochard-showCase-item" style={{ height: window.innerHeight }}>
+              <UIImage
+                className="maquette odd"
+                src="/public/assets/images/01_Appartement_Rochard/06@2x.png" />
+              <h3 className="label" style={{ color }}>distributeur</h3>
+            </div>
+
+            <div className="Rochard-showCase-item" style={{ height: window.innerHeight }}>
+              <UIImage
+                className="maquette odd"
+                src="/public/assets/images/01_Appartement_Rochard/07@2x.png" />
+              <h3 className="label" style={{ color }}>contact</h3>
+            </div>
+          </section>
+
+        </div>
+
+        <div className="CaseStudy-blob" ref="bottomBlob" style={{ height: window.innerHeight }}>
+          <h1
+            className="CaseStudy-title CaseStudy-title--bottom projectTitle"
+            style={{ color: nextProj.color }}>
+            {nextProj.title}
+          </h1>
+          <BlobBackground
+            reversed
+            isBlob={bottomBlob}
+            color={nextProj.color} />
         </div>
       </div>
     )

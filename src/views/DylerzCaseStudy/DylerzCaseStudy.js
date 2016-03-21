@@ -88,7 +88,7 @@ class DylerzCaseStudy extends Component {
         }, 'first')
         .to(refs.computer, 5.5, {
           delay: 1.7,
-          y: window.innerHeight * 5.7,
+          y: window.innerHeight * 5.8,
           ease: Power0.easeInOut
         }, 'first')
         .to(refs.screen, 5.1, {
