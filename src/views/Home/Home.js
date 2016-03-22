@@ -22,12 +22,14 @@ class Home extends Component {
   }
 
   static contextTypes = {
-    setPage: PropTypes.func.isRequired
+    setPage: PropTypes.func.isRequired,
+    setCurrentProject: PropTypes.func.isRequired,
   }
 
   state = { selectedProj: 'rochard' }
 
   componentDidMount() {
+    this.context.setCurrentProject(projects[this.state.selectedProj])
     this.willAnimateIn(this)
     window.addEventListener('mousewheel', this.handleScroll)
     window.addEventListener('wheel', this.handleScroll)
@@ -36,6 +38,7 @@ class Home extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.selectedProj !== this.state.selectedProj) {
+      this.context.setCurrentProject(projects[this.state.selectedProj])
       this.animateProjectOut(this.refs[prevState.selectedProj], () => {
         this.animateProjectIn(this.refs[this.state.selectedProj])
       })
@@ -153,13 +156,13 @@ class Home extends Component {
   render() {
 
     const { selectedProj } = this.state
-    const { color } = projects[selectedProj]
+    const { color: selectedColor } = projects[selectedProj]
     const { setPage } = this.context
 
     return (
       <div className="Home" onClick={this.selectNext}>
 
-        <BlobBackground color={color} />
+        <BlobBackground color={selectedColor} />
 
         {mapValues(projects, ({title, path, color}, key) => {
           const isSelected = selectedProj === key

@@ -17,7 +17,7 @@
     height: 135%;
     top: 0;
     left: 0;
-    transition: background-color 1.7s $ease-out-heavy .6s;
+    transition: background-color 1.7s $ease-out .5s;
 
     &--reversed {
       height: 135%;
@@ -56,8 +56,7 @@
     border-radius: 150px;
 
     transform: translateY(-101%);
-    transition: box-shadow .8s ease;
-    transition: background-color 1.7s $ease-out-heavy .6s;
+    transition: box-shadow .8s ease, background-color 1.7s $ease-out .5s;
 
     &.shadow {
       box-shadow: 0px -10px 20px rgba(black, .07), 0px -10px 20px rgba(black, .09) inset;
@@ -91,18 +90,18 @@
     border-radius: 150px;
 
     transform: translateY(101%);
-    transition: box-shadow .8s ease;
+    transition: box-shadow .8s ease, background-color 1.7s $ease-out .5s;
 
-    &:nth-child(1)::before {
-      content: '';
-      position: absolute;
-      width: 1px;
-      height: 100%;
-      z-index: -1;
-      top: 0;
-      left: 50%;
-      background-color: $color-gray-light;
-    }
+    // &:nth-child(1)::before {
+    //   content: '';
+    //   position: absolute;
+    //   width: 1px;
+    //   height: 100%;
+    //   z-index: -1;
+    //   top: 0;
+    //   left: 50%;
+    //   background-color: $color-gray-light;
+    // }
 
     &.shadow {
       box-shadow: 0px -10px 20px rgba(black, .09), 0px -10px 20px rgba(black, .07) inset;

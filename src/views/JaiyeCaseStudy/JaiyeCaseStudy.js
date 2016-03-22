@@ -21,12 +21,14 @@ const nextProj = projects.dylerz
 class JaiyeCaseStudy extends Component {
 
   static contextTypes = {
-    setPage: PropTypes.func.isRequired
+    setPage: PropTypes.func.isRequired,
+    setCurrentProject: PropTypes.func.isRequired,
   }
 
   state = { blob: false, bottomBlob: false, isRippleAnimated: false }
 
   componentDidMount() {
+    this.context.setCurrentProject(project)
     this.willAnimateIn(this)
   }
 
@@ -187,31 +189,32 @@ class JaiyeCaseStudy extends Component {
 
     const secondTl = new TimelineMax()
     secondTl
-      .fromTo(refs.secondTitle, 2, {
-        y: -400,
+      .fromTo(refs.secondTitle, 2.3, {
+        y: -700,
       }, {
-        y: -100,
+        y: -300,
         ease: Power1.easeOut
       }, 'second')
       .staggerFrom('.secondSection .wireframe', 1.7, {
+        delay: .2,
         y: 250,
         ease: Power1.easeOut
       }, 1.2, 'second')
       .staggerFrom('.secondSection .wireframe.odd', 1, {
-        delay: .4,
+        delay: .6,
         rotation: 10,
         ease: Power1.easeOut
-      }, 1.2, 'second')
+      }, 1.1, 'second')
       .staggerFrom('.secondSection .wireframe.even', 1, {
-        delay: 1,
+        delay: 1.25,
         rotation: -10,
         ease: Power1.easeOut
-      }, 1.2, 'second')
+      }, 1, 'second')
 
 
     new ScrollMagic.Scene({
       triggerElement: refs.secondSection,
-      offset: - window.innerHeight * 1.3,
+      offset: - window.innerHeight * 1.5,
       duration: secondTl.totalDuration() * window.innerHeight,
     })
       .setTween(secondTl)

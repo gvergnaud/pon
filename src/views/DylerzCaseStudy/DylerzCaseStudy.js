@@ -21,12 +21,14 @@ const nextProj = projects.rochard
 class DylerzCaseStudy extends Component {
 
   static contextTypes = {
-    setPage: PropTypes.func.isRequired
+    setPage: PropTypes.func.isRequired,
+    setCurrentProject: PropTypes.func.isRequired,
   }
 
   state = { blob: false, bottomBlob: false, isRippleAnimated: false, isMenuRippleAnimated: false }
 
   componentDidMount() {
+    this.context.setCurrentProject(project)
     this.willAnimateIn(this)
   }
 

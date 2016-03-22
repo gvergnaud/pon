@@ -10,25 +10,38 @@ class BlobBackground extends Component {
     height: PropTypes.number,
     isBlob: PropTypes.bool,
     reversed: PropTypes.bool,
-    interactive: PropTypes.bool
+    interactive: PropTypes.bool,
+    blobIntensity: PropTypes.number,
+  }
+
+  static defaultProps = {
+    height: window.innerHeight * 1.5,
+    isBlob: false,
+    reversed: false,
+    interactive: false,
+    blobIntensity: 1,
   }
 
   componentDidMount() {
 
     this.tl = new TimelineMax({ paused: true })
 
-    const { reversed } = this.props
+    const { reversed, blobIntensity } = this.props
 
     this.tl.add([
       ...[...this.refs.blobContainer.childNodes].map((el, i) =>
         TweenMax.to(el, 2.3, {
-          yPercent: reversed ? - Math.round(12 + Math.random() * 6) : Math.round(12 + Math.random() * 23),
+          yPercent: reversed
+            ? - Math.round(12 + Math.random() * (6 * blobIntensity))
+            : Math.round(12 + Math.random() * (23 * blobIntensity)),
           ease: Elastic.easeOut
         })
       ),
       ...[...this.refs.antiBlobContainer.childNodes].map(el =>
         TweenMax.to(el, 2.3, {
-          yPercent: reversed ? Math.round(12 + Math.random() * 23) : - Math.round(12 + Math.random() * 6),
+          yPercent: reversed
+            ? Math.round(12 + Math.random() * (23 * blobIntensity))
+            : - Math.round(12 + Math.random() * (6 * blobIntensity)),
           ease: Elastic.easeOut
         })
       )
@@ -54,14 +67,14 @@ class BlobBackground extends Component {
 
   touchBlob = ({ target }) => {
     if (!this.props.reversed) TweenMax.to(target, 2, {
-      yPercent: Math.round(15 + Math.random() * 15),
+      yPercent: Math.round(15 + Math.random() * (15 * this.props.blobIntensity)),
       ease: Elastic.easeOut
     })
   }
 
   touchAntiBlob = ({ target }) => {
     if (this.props.reversed) TweenMax.to(target, 2, {
-      yPercent: Math.round(15 + Math.random() * 15),
+      yPercent: Math.round(15 + Math.random() * (15 * this.props.blobIntensity)),
       ease: Elastic.easeOut
     })
   }
@@ -71,7 +84,7 @@ class BlobBackground extends Component {
     const { color, height, isBlob, reversed } = this.props
 
     return (
-      <div className="BlobBackground" ref="Blob" style={{ height: height || window.innerHeight * 1.5 }}>
+      <div className="BlobBackground" ref="Blob" style={{ height }}>
 
         <div className={`container`}>
           <div

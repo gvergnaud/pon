@@ -1,0 +1,23 @@
+@import "../../scss/settings.scss";
+
+.Menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 15;
+
+  &-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 60%;
+    width: 100%;
+
+    background-color: white;
+  }
+
+  &-blobBg {
+  }
+}
