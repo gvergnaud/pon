@@ -103,10 +103,11 @@ body {
       transform: translateX(-50%);
       z-index: 20;
       opacity: 1;
-      transition: .2s $ease-in-out-heavy;
+      transition: 1s $ease-in-out-heavy;
 
       &--hidden {
-        opacity: 0
+        transition: .2s $ease-in-out-heavy;
+        opacity: 0;
       }
     }
 
