@@ -32,7 +32,7 @@
     align-items: flex-end;
 
     &--reversed {
-      bottom: 100%;
+      bottom: 99.9%;
       top: initial;
       align-items: flex-start;
     }
@@ -76,7 +76,7 @@
     align-items: flex-start;
 
     &--reversed {
-      top: 0;
+      top: -1px;
       align-items: flex-end;
     }
   }

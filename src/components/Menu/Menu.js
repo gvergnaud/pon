@@ -114,6 +114,9 @@ class Menu extends Component {
       <div className="Menu" onClick={onClose}>
 
         <div className="Menu-content" ref="content" style={{ color }}>
+          <a target="_blank" href="http://gabrielvergnaud.com" className="Menu-content-RPZ">
+            Developed by Gabriel Vergnaud
+          </a>
           <div className="Menu-content-container" onClick={this.stopEvent}>
             <div className="Menu-content-text">
               <p>My name is Pon…</p>
