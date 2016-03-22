@@ -7,6 +7,7 @@ import 'animation.gsap'
 import 'debug.addIndicators'
 import 'gsap'
 import 'gsap.ScrollToPlugin'
+import { getDocumentHeight, getScrollTop } from '../../utils'
 
 import BlobBackground from '../../components/BlobBackground'
 import UIImage from '../../components/UIImage'
@@ -95,7 +96,7 @@ class JaiyeCaseStudy extends Component {
         this.setState({ isRippleAnimated: true })
 
         setTimeout(() => {
-          if (document.body.scrollTop + window.innerHeight > document.body.scrollHeight - 20) {
+          if (getScrollTop() + window.innerHeight > getDocumentHeight() - 20) {
             this.context.setPage(nextProj.path)
           }
         }, 1500)

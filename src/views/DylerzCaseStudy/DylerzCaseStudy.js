@@ -7,6 +7,7 @@ import 'animation.gsap'
 import 'debug.addIndicators'
 import 'gsap'
 import 'gsap.ScrollToPlugin'
+import { getDocumentHeight, getScrollTop } from '../../utils'
 
 import BlobBackground from '../../components/BlobBackground'
 import UIImage from '../../components/UIImage'
@@ -23,7 +24,7 @@ class DylerzCaseStudy extends Component {
     setPage: PropTypes.func.isRequired
   }
 
-  state = { blob: false, bottomBlob: false, isRippleAnimated: false }
+  state = { blob: false, bottomBlob: false, isRippleAnimated: false, isMenuRippleAnimated: false }
 
   componentDidMount() {
     this.willAnimateIn(this)
@@ -85,7 +86,7 @@ class DylerzCaseStudy extends Component {
           this.setState({ isRippleAnimated: true })
 
           setTimeout(() => {
-            if (document.body.scrollTop + window.innerHeight > document.body.scrollHeight - 20) {
+            if (getScrollTop() + window.innerHeight > getDocumentHeight() - 20) {
               this.context.setPage(nextProj.path)
             }
           }, 1500)
@@ -181,18 +182,12 @@ class DylerzCaseStudy extends Component {
         .addTo(this.controller)
 
 
-
-      // new ScrollMagic.Scene({
-      //   triggerElement: refs.events,
-      //   offset: - window.innerHeight / 2
-      // })
-      //  .on('enter', () => {
-      //    console.log("aez")
-      //    console.log(refs.eventsimage)
-      //
-      //    TweenMax
-      //  })
-      //  .addTo(this.controller)
+    new ScrollMagic.Scene({
+      triggerElement: refs.menu
+    })
+      .on('enter', () => this.setState({ isMenuRippleAnimated: true }))
+      .on('leave', () => this.setState({ isMenuRippleAnimated: false }))
+      .addTo(this.controller)
   }
 
   willAnimateOut(done) {
@@ -227,7 +222,7 @@ class DylerzCaseStudy extends Component {
 
   render() {
     const { color, title } = project
-    const { blob, bottomBlob, isRippleAnimated } = this.state
+    const { blob, bottomBlob, isRippleAnimated, isMenuRippleAnimated } = this.state
 
     return (
       <div className="Dylerz CaseStudy">
@@ -356,6 +351,8 @@ class DylerzCaseStudy extends Component {
           <div
             ref="menu"
             className="Dylerz-showCase-menu">
+
+            <Ripple className="Dylerz-menuRipple" isAnimated={isMenuRippleAnimated} color={color} />
 
             <span
               ref="menuimage"

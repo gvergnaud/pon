@@ -3,6 +3,12 @@
 
 .Dylerz {
 
+  &-menuRipple {
+    position: absolute;
+    transform: translateY(200%);
+    opacity: .5;
+  }
+
   &-symbol {
     display: inline-block;
     letter-spacing: 0;

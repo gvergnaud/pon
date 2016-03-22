@@ -1,4 +1,13 @@
 .Rochard {
+
+  &-friendRipple {
+    position: absolute;
+    transform: translateY(500px);
+    opacity: .5;
+    height: 50px;
+    width: 50px;
+  }
+
   &-showCase {
     margin: 120px 0 400px;
 

@@ -7,6 +7,7 @@ import 'animation.gsap'
 import 'debug.addIndicators'
 import 'gsap'
 import 'gsap.ScrollToPlugin'
+import { getDocumentHeight, getScrollTop } from '../../utils'
 
 import BlobBackground from '../../components/BlobBackground'
 import UIImage from '../../components/UIImage'
@@ -23,7 +24,7 @@ class RochardCaseStudy extends Component {
     setPage: PropTypes.func.isRequired
   }
 
-  state = { blob: false, bottomBlob: false, isRippleAnimated: false }
+  state = { blob: false, bottomBlob: false, isRippleAnimated: false, isFriendRippleAnimated: false }
 
   componentDidMount() {
     this.willAnimateIn(this)
@@ -85,7 +86,7 @@ class RochardCaseStudy extends Component {
         this.setState({ isRippleAnimated: true })
 
         setTimeout(() => {
-          if (document.body.scrollTop + window.innerHeight > document.body.scrollHeight - 20) {
+          if (getScrollTop() + window.innerHeight > getDocumentHeight() - 20) {
             this.context.setPage(nextProj.path)
           }
         }, 1500)
@@ -164,6 +165,15 @@ class RochardCaseStudy extends Component {
 
       })
       .addTo(this.controller)
+
+
+    new ScrollMagic.Scene({
+      triggerElement: refs.friendRipple
+    })
+      .on('enter', () => this.setState({ isFriendRippleAnimated: true }))
+      .on('leave', () => this.setState({ isFriendRippleAnimated: false }))
+      .addTo(this.controller)
+
   }
 
   willAnimateOut(done) {
@@ -178,7 +188,7 @@ class RochardCaseStudy extends Component {
   render() {
 
     const { color, title } = project
-    const { blob, bottomBlob, isRippleAnimated } = this.state
+    const { blob, bottomBlob, isRippleAnimated, isFriendRippleAnimated } = this.state
 
     return (
       <div className="Rochard CaseStudy">
@@ -241,11 +251,12 @@ class RochardCaseStudy extends Component {
               <h3 className="label" style={{ color }}>informations</h3>
             </div>
 
-            <div className="Rochard-showCase-item" style={{ height: window.innerHeight }}>
+            <div ref="friendRipple" className="Rochard-showCase-item" style={{ height: window.innerHeight }}>
               <UIImage
                 className="maquette odd"
                 src="/public/assets/images/01_Appartement_Rochard/04@2x.png" />
               <h3 className="label" style={{ color }}>amis</h3>
+              <Ripple className="Rochard-friendRipple" isAnimated={isFriendRippleAnimated} color={color} />
             </div>
 
             <div className="Rochard-showCase-item" style={{ height: window.innerHeight }}>
