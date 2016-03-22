@@ -25,7 +25,7 @@ class JaiyeCaseStudy extends Component {
     setCurrentProject: PropTypes.func.isRequired,
   }
 
-  state = { blob: false, bottomBlob: false, isRippleAnimated: false }
+  state = { blob: false, bottomBlob: true, isRippleAnimated: false }
 
   componentDidMount() {
     this.context.setCurrentProject(project)
@@ -127,12 +127,12 @@ class JaiyeCaseStudy extends Component {
         delay: 1,
         rotation: 12,
         ease: Power1.easeOut
-      }, 1.1, 'first')
+      }, 1, 'first')
       .staggerFrom('.firstSection .wireframe.even', 1, {
         delay: 1.5,
         rotation: -12,
         ease: Power1.easeOut
-      }, 1.1, 'first')
+      }, 1, 'first')
       .staggerFrom('.firstSection .label', 2, {
         delay: .5,
         y: 450,
@@ -288,47 +288,83 @@ class JaiyeCaseStudy extends Component {
 
           <section className="Jaiye-showCase firstSection" ref="showcase">
             <div className="Jaiye-showCase-item">
-              <UIImage className="wireframe odd" height={700} width={335} src="/public/assets/images/02_Jaiye/01@2x.png" />
+              <UIImage
+                style={{ borderRadius: window.innerHeight * 0.064 }}
+                className="wireframe odd"
+                height={window.innerHeight * .85}
+                src="/public/assets/images/02_Jaiye/01@2x.png" />
               <h3 className="label" style={{ color }}>Login Screen</h3>
             </div>
 
             <div className="Jaiye-showCase-item">
-              <UIImage className="wireframe even" height={700} width={335} src="/public/assets/images/02_Jaiye/02@2x.png" />
+              <UIImage
+                style={{ borderRadius: window.innerHeight * 0.064 }}
+                className="wireframe even"
+                height={window.innerHeight * .85}
+                src="/public/assets/images/02_Jaiye/02@2x.png" />
               <h3 className="label" style={{ color }}>Registration tunnel</h3>
             </div>
 
             <div className="Jaiye-showCase-item">
-              <UIImage className="wireframe odd" height={700} width={335} src="/public/assets/images/02_Jaiye/03@2x.png" />
+              <UIImage
+                style={{ borderRadius: window.innerHeight * 0.064 }}
+                className="wireframe odd"
+                height={window.innerHeight * .85}
+                src="/public/assets/images/02_Jaiye/03@2x.png" />
               <h3 className="label" style={{ color }}>My playlist</h3>
             </div>
 
             <div className="Jaiye-showCase-item">
-              <UIImage className="wireframe even" height={700} width={335} src="/public/assets/images/02_Jaiye/04@2x.png" />
+              <UIImage
+                style={{ borderRadius: window.innerHeight * 0.064 }}
+                className="wireframe even"
+                height={window.innerHeight * .85}
+                src="/public/assets/images/02_Jaiye/04@2x.png" />
               <h3 className="label" style={{ color }}>Artist view</h3>
             </div>
 
             <div className="Jaiye-showCase-item">
-              <UIImage className="wireframe odd" height={700} width={335} src="/public/assets/images/02_Jaiye/05@2x.png" />
+              <UIImage
+                style={{ borderRadius: window.innerHeight * 0.064 }}
+                className="wireframe odd"
+                height={window.innerHeight * .85}
+                src="/public/assets/images/02_Jaiye/05@2x.png" />
               <h3 className="label" style={{ color }}>Album view</h3>
             </div>
 
             <div className="Jaiye-showCase-item">
-              <UIImage className="wireframe even" height={700} width={335} src="/public/assets/images/02_Jaiye/06@2x.png" />
+              <UIImage
+                style={{ borderRadius: window.innerHeight * 0.064 }}
+                className="wireframe even"
+                height={window.innerHeight * .85}
+                src="/public/assets/images/02_Jaiye/06@2x.png" />
               <h3 className="label" style={{ color }}>Album on scroll view</h3>
             </div>
 
             <div className="Jaiye-showCase-item">
-              <UIImage className="wireframe odd" height={700} width={335} src="/public/assets/images/02_Jaiye/07@2x.png" />
+              <UIImage
+                style={{ borderRadius: window.innerHeight * 0.064 }}
+                className="wireframe odd"
+                height={window.innerHeight * .85}
+                src="/public/assets/images/02_Jaiye/07@2x.png" />
               <h3 className="label" style={{ color }}>Search view</h3>
             </div>
 
             <div className="Jaiye-showCase-item">
-              <UIImage className="wireframe even" height={700} width={335} src="/public/assets/images/02_Jaiye/08@2x.png" />
+              <UIImage
+                style={{ borderRadius: window.innerHeight * 0.064 }}
+                className="wireframe even"
+                height={window.innerHeight * .85}
+                src="/public/assets/images/02_Jaiye/08@2x.png" />
               <h3 className="label" style={{ color }}>Player view</h3>
             </div>
 
             <div className="Jaiye-showCase-item">
-              <UIImage className="wireframe odd" height={700} width={335} src="/public/assets/images/02_Jaiye/09@2x.png" />
+              <UIImage
+                style={{ borderRadius: window.innerHeight * 0.064 }}
+                className="wireframe odd"
+                height={window.innerHeight * .85}
+                src="/public/assets/images/02_Jaiye/09@2x.png" />
               <h3 className="label" style={{ color }}>Option view</h3>
             </div>
           </section>
@@ -338,19 +374,35 @@ class JaiyeCaseStudy extends Component {
           <span ref="secondSection">
             <section className="Jaiye-showCase secondSection">
               <div className="Jaiye-showCase-item">
-                <UIImage className="wireframe odd" height={700} width={335} src="/public/assets/images/02_Jaiye/10@2x.png" />
+                <UIImage
+                  style={{ borderRadius: window.innerHeight * 0.064 }}
+                  className="wireframe wireframe--black odd"
+                  height={window.innerHeight * .85}
+                  src="/public/assets/images/02_Jaiye/10@2x.png" />
               </div>
 
               <div className="Jaiye-showCase-item">
-                <UIImage className="wireframe even" height={700} width={335} src="/public/assets/images/02_Jaiye/11@2x.png" />
+                <UIImage
+                  style={{ borderRadius: window.innerHeight * 0.064 }}
+                  className="wireframe wireframe--black even"
+                  height={window.innerHeight * .85}
+                  src="/public/assets/images/02_Jaiye/11@2x.png" />
               </div>
 
               <div className="Jaiye-showCase-item">
-                <UIImage className="wireframe odd" height={700} width={335} src="/public/assets/images/02_Jaiye/12@2x.png" />
+                <UIImage
+                  style={{ borderRadius: window.innerHeight * 0.064 }}
+                  className="wireframe wireframe--black odd"
+                  height={window.innerHeight * .85}
+                  src="/public/assets/images/02_Jaiye/12@2x.png" />
               </div>
 
               <div className="Jaiye-showCase-item">
-                <UIImage className="wireframe even" height={700} width={335} src="/public/assets/images/02_Jaiye/13@2x.png" />
+                <UIImage
+                  style={{ borderRadius: window.innerHeight * 0.064 }}
+                  className="wireframe wireframe--black even"
+                  height={window.innerHeight * .85}
+                  src="/public/assets/images/02_Jaiye/13@2x.png" />
               </div>
             </section>
           </span>
@@ -366,6 +418,7 @@ class JaiyeCaseStudy extends Component {
           </h1>
           <Ripple className="CaseStudy-blobRipple" isAnimated={isRippleAnimated} color={color} />
           <BlobBackground
+            isParallax
             reversed
             isBlob={bottomBlob}
             color={nextProj.color} />

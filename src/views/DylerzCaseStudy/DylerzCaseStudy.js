@@ -25,7 +25,7 @@ class DylerzCaseStudy extends Component {
     setCurrentProject: PropTypes.func.isRequired,
   }
 
-  state = { blob: false, bottomBlob: false, isRippleAnimated: false, isMenuRippleAnimated: false }
+  state = { blob: false, bottomBlob: true, isRippleAnimated: false, isMenuRippleAnimated: false }
 
   componentDidMount() {
     this.context.setCurrentProject(project)
@@ -379,6 +379,7 @@ class DylerzCaseStudy extends Component {
           </h1>
           <Ripple className="CaseStudy-blobRipple" isAnimated={isRippleAnimated} color={color} />
           <BlobBackground
+            isParallax
             reversed
             isBlob={bottomBlob}
             color={nextProj.color} />

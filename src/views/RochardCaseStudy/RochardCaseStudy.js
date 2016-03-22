@@ -25,7 +25,7 @@ class RochardCaseStudy extends Component {
     setCurrentProject: PropTypes.func.isRequired,
   }
 
-  state = { blob: false, bottomBlob: false, isRippleAnimated: false, isFriendRippleAnimated: false }
+  state = { blob: false, bottomBlob: true, isRippleAnimated: false, isFriendRippleAnimated: false }
 
   componentDidMount() {
     this.context.setCurrentProject(project)
@@ -294,6 +294,7 @@ class RochardCaseStudy extends Component {
           </h1>
           <Ripple className="CaseStudy-blobRipple" isAnimated={isRippleAnimated} color={color} />
           <BlobBackground
+            isParallax
             reversed
             isBlob={bottomBlob}
             color={nextProj.color} />

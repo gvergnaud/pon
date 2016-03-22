@@ -35,17 +35,18 @@
 
 
       .wireframe {
-        max-width: 100%;
-        height: auto;
+        width: auto;
         border-radius: 60px;
         box-shadow: 0 5px 30px rgba(black, .2);
-        z-index: 2;
+
+        &--black {
+          background-color: #1a1a1a;
+        }
       }
 
       .label {
         width: 60%;
         font-size: 50px;
-        z-index: 3;
       }
     }
   }
