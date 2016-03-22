@@ -1,0 +1,106 @@
+@import "../../scss/settings.scss";
+
+@keyframes rip {
+  0%  {
+    opacity: 0;
+    transform: scale(0);
+  }
+  5%  {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(8);
+  }
+}
+
+@keyframes lastRip {
+  0%  {
+    opacity: 0;
+    transform: scale(0);
+  }
+  5%  {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(3);
+  }
+}
+
+
+.Ripple {
+  position: relative;
+  width: 100px;
+  height: 100px;
+
+  &-wave {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+
+    opacity: 0;
+    border-radius: 100%;
+    box-shadow: 0 7px 10px rgba(black, .05);
+    transform: scale(0);
+
+    &.first {
+      // left: -50%;
+    }
+
+    &.second {
+      // left: 50%;
+    }
+
+    &--animated {
+      animation: rip 2s ease;
+
+      &.delay {
+        animation-delay: .75s;
+      }
+
+      &.first {
+      }
+
+      &.second {
+        animation-delay: .15s;
+        &.delay {
+          animation-delay: .9s;
+        }
+      }
+
+      &.third {
+        animation: lastRip 2s linear .9s;
+        &.delay {
+          animation-delay: 1.6s;
+        }
+      }
+    }
+  }
+}
+
+
+
+// .ripple,.ripple:before,.ripple:after {
+//   display:block;
+//   border-radius: 2px;
+//   width: 2px;
+//   height: 2px;
+//   animation: rip 2s;
+//   animation: rip 2s;
+// }
+// .ripple {
+//   position:absolute;
+//   z-index: 1;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+//   animation: rippleOpacity 2s;
+//
+//   &:before,&:after {
+//     content:'';
+//     position:absolute;
+//   }
+// }

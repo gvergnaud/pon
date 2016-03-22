@@ -8,6 +8,7 @@ import 'gsap.CSSRulePlugin'
 import 'gsap.TextPlugin'
 
 import BlobBackground from '../../components/BlobBackground'
+import Ripple from '../../components/Ripple'
 
 
 
@@ -80,9 +81,11 @@ class Home extends Component {
     const tl = new TimelineMax({ paused: true })
 
     tl
-      .set(title, { opacity: 0, scale: .95 })
       .to(project, .2, { opacity: 1 })
-      .to(title, 1.2, {
+      .fromTo(title, 1.2, {
+        opacity: 0,
+        scale: .95
+      }, {
         scale: 1,
         opacity: 1,
         textShadow: "0 5px 10px rgba(0,0,0, .25)",
@@ -171,6 +174,8 @@ class Home extends Component {
                 style={{ color }}>
                 {title}
               </h1>
+
+              <Ripple delay={true} className="Home-ripple" isAnimated={isSelected} color={color} />
 
               <div
                 className={`Home-goButton ${isSelected ? 'Home-goButton--selected' : ''}`}

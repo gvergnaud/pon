@@ -10,6 +10,7 @@ import 'gsap.ScrollToPlugin'
 
 import BlobBackground from '../../components/BlobBackground'
 import UIImage from '../../components/UIImage'
+import Ripple from '../../components/Ripple'
 
 
 const project = projects.jaiye
@@ -22,7 +23,7 @@ class JaiyeCaseStudy extends Component {
     setPage: PropTypes.func.isRequired
   }
 
-  state = { blob: false, bottomBlob: false }
+  state = { blob: false, bottomBlob: false, isRippleAnimated: false }
 
   componentDidMount() {
     this.willAnimateIn(this)
@@ -35,7 +36,7 @@ class JaiyeCaseStudy extends Component {
       scrollTo: { y: 0 },
       ease: Power4.easeInOut
     }, {
-      scrollTo: { y: window.innerHeight },
+      scrollTo: { y: window.innerHeight * 1.2 },
       ease: Power4.easeInOut
     })
 
@@ -78,11 +79,27 @@ class JaiyeCaseStudy extends Component {
       triggerElement: refs.bottomBlob,
       offset: window.innerHeight / 2
     })
-      .on('start', () => setTimeout(() => {
-        if (document.body.scrollTop + window.innerHeight > document.body.scrollHeight - 20) {
-          this.context.setPage(nextProj.path)
-        }
-      }, 1500))
+      .on('start', () => {
+        TweenMax.fromTo(refs.bottomTitle, 1.2, {
+          opacity: 0,
+          scale: .95,
+          textShadow: "0 0 0 rgba(0,0,0, 0)",
+        }, {
+          scale: 1,
+          opacity: 1,
+          textShadow: "0 5px 10px rgba(0,0,0, .25)",
+          ease: Elastic.easeOut.config(1),
+          delay: .15
+        })
+
+        this.setState({ isRippleAnimated: true })
+
+        setTimeout(() => {
+          if (document.body.scrollTop + window.innerHeight > document.body.scrollHeight - 20) {
+            this.context.setPage(nextProj.path)
+          }
+        }, 1500)
+      })
       .addTo(this.controller)
 
 
@@ -212,7 +229,7 @@ class JaiyeCaseStudy extends Component {
   render() {
 
     const { color, title } = project
-    const { blob, bottomBlob } = this.state
+    const { blob, bottomBlob, isRippleAnimated } = this.state
 
     return (
       <div className="Jaiye CaseStudy">
@@ -338,10 +355,12 @@ class JaiyeCaseStudy extends Component {
 
         <div className="CaseStudy-blob" ref="bottomBlob" style={{ height: window.innerHeight }}>
           <h1
+            ref="bottomTitle"
             className="CaseStudy-title CaseStudy-title--bottom projectTitle"
             style={{ color: nextProj.color }}>
             {nextProj.title}
           </h1>
+          <Ripple className="CaseStudy-blobRipple" isAnimated={isRippleAnimated} color={color} />
           <BlobBackground
             reversed
             isBlob={bottomBlob}

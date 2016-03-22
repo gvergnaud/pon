@@ -22,13 +22,13 @@ class BlobBackground extends Component {
     this.tl.add([
       ...[...this.refs.blobContainer.childNodes].map((el, i) =>
         TweenMax.to(el, 2.3, {
-          yPercent: reversed ? - Math.round(12 + Math.random() * 6) : Math.round(12 + Math.random() * 35),
+          yPercent: reversed ? - Math.round(12 + Math.random() * 6) : Math.round(12 + Math.random() * 23),
           ease: Elastic.easeOut
         })
       ),
       ...[...this.refs.antiBlobContainer.childNodes].map(el =>
         TweenMax.to(el, 2.3, {
-          yPercent: reversed ? Math.round(12 + Math.random() * 35) : - Math.round(12 + Math.random() * 6),
+          yPercent: reversed ? Math.round(12 + Math.random() * 23) : - Math.round(12 + Math.random() * 6),
           ease: Elastic.easeOut
         })
       )
@@ -54,14 +54,14 @@ class BlobBackground extends Component {
 
   touchBlob = ({ target }) => {
     if (!this.props.reversed) TweenMax.to(target, 2, {
-      yPercent: Math.round(15 + Math.random() * 20),
+      yPercent: Math.round(15 + Math.random() * 15),
       ease: Elastic.easeOut
     })
   }
 
   touchAntiBlob = ({ target }) => {
     if (this.props.reversed) TweenMax.to(target, 2, {
-      yPercent: Math.round(15 + Math.random() * 20),
+      yPercent: Math.round(15 + Math.random() * 15),
       ease: Elastic.easeOut
     })
   }

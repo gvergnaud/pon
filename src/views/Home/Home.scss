@@ -50,6 +50,13 @@
     }
   }
 
+  &-ripple {
+    position: absolute;
+    left: 28%;
+    top: 35%;
+    z-index: -1;
+  }
+
   &-goButton {
     position: absolute;
     bottom: 100px;
