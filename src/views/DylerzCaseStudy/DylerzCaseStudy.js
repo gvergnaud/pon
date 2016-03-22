@@ -125,7 +125,7 @@ class DylerzCaseStudy extends Component {
         .staggerFrom('.pictoContainer .picto', .2, {
           delay: .3,
           opacity: 0,
-          scale: .5,
+          scale: .2,
           ease: Elastic.easeOut
         }, .03, 'second')
         .from(refs.menuimage, 1.5, {
@@ -327,7 +327,7 @@ class DylerzCaseStudy extends Component {
                   <div className="picto">•</div>
                   <div className="picto">•</div>
                   <div className="picto">•</div>
-                  <div className="picto triangle">▼</div>
+                  <div className="picto triangle" style={{ color }}>▼</div>
                   <div className="picto">•</div>
                 </div>
                 <div className="picto-row">

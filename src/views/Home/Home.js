@@ -59,7 +59,14 @@ class Home extends Component {
       scale: .8,
     })
 
-    this.animateProjectIn(refs[this.state.selectedProj])
+    TweenMax.fromTo(refs.element, .6, {
+      opacity: 1,
+      xPercent: -100,
+    }, {
+      xPercent: 0,
+      ease: Power3.easeInOut,
+      onComplete: () => this.animateProjectIn(refs[this.state.selectedProj])
+    })
   }
 
   willAnimateOut(done) {
@@ -160,7 +167,7 @@ class Home extends Component {
     const { setPage } = this.context
 
     return (
-      <div className="Home" onClick={this.selectNext}>
+      <div className="Home" ref="element" onClick={this.selectNext}>
 
         <BlobBackground color={selectedColor} />
 

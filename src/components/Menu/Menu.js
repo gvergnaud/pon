@@ -31,7 +31,7 @@ class Menu extends Component {
         ease: Power2.easeInOut,
       }, 'start')
       .fromTo(this.refs.blob, 1.5, {
-        yPercent: -100
+        yPercent: -101
       }, {
         delay: .3,
         yPercent: 20,
@@ -65,7 +65,7 @@ class Menu extends Component {
         ease: Power2.easeOut
       }, .03)
       .to(this.refs.blob, 1.5, {
-        yPercent: -100,
+        yPercent: -101,
         ease: Power4.easeInOut,
       })
       .to(this.refs.content, .5, {
@@ -115,7 +115,7 @@ class Menu extends Component {
 
         <div className="Menu-content" ref="content" style={{ color }}>
           <a target="_blank" href="http://gabrielvergnaud.com" className="Menu-content-RPZ">
-            Developed by Gabriel Vergnaud
+            Developement by Gabriel Vergnaud
           </a>
           <div className="Menu-content-container" onClick={this.stopEvent}>
             <div className="Menu-content-text">

@@ -81,7 +81,7 @@
     transform: scale(.5);
     box-shadow: 0 0 0 rgba(black, 0);
     text-shadow: 0 0 0 rgba(black, 0);
-    transition: .5s $ease-in-out-bounce 1.15s;
+    transition: .6s $ease-in-out-bounce 1.15s;
 
     &:after {
       content: '';
@@ -95,7 +95,7 @@
 
       box-shadow: 0 0 0 rgba(black, 0);
 
-      transition: .5s $ease-in-out-bounce 1.15s;
+      transition: .6s $ease-in-out-bounce 1.15s;
       transform: translate(-50%, -50%) scale(.5);
     }
 

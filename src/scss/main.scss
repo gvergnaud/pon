@@ -22,6 +22,41 @@ body {
     letter-spacing: 1px;
     font-size: 14px;
 
+    &-projectCursor {
+
+      filter: url(#goo);
+      position: fixed;
+      top: 50%;
+      left: 45px;
+      width: 6px;
+      height: 40px;
+      z-index: 20;
+
+      transform: translateY(-50%);
+      cursor: pointer;
+
+      .cursor, .point {
+        width: 6px;
+        border-radius: 6px;
+      }
+
+      .cursor {
+        height: 18px;
+        position: absolute;
+        transition: .5s $ease-in-out-bounce;
+      }
+
+      .point {
+        height: 6px;
+        margin-top: 6px;
+
+
+        &-first {
+          margin-top: 0;
+        }
+      }
+    }
+
     &-menuIcon {
       position: fixed;
       top: 35px;
@@ -82,6 +117,11 @@ body {
       cursor: pointer;
       z-index: 20;
       transition: .3s $ease-in-out;
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
     }
   }
 }
