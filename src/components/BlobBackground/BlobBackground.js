@@ -22,7 +22,7 @@ class BlobBackground extends Component {
     height: window.innerHeight * 1.5,
     isBlob: false,
     reversed: false,
-    interactive: false,
+    interactive: true,
     isParallax: false,
     blobIntensity: 1,
   }
@@ -90,15 +90,17 @@ class BlobBackground extends Component {
   }
 
   touchBlob = ({ target }) => {
-    if (!this.props.reversed && !this.props.isParallax) TweenMax.to(target, 2, {
-      yPercent: Math.round(15 + Math.random() * (15 * this.props.blobIntensity)),
+    const { interactive, reversed, isParallax, blobIntensity } = this.props
+    if (interactive && !reversed && !isParallax) TweenMax.to(target, 2, {
+      yPercent: Math.round(15 + Math.random() * (15 * blobIntensity)),
       ease: Elastic.easeOut
     })
   }
 
   touchAntiBlob = ({ target }) => {
-    if (this.props.reversed && !this.props.isParallax) TweenMax.to(target, 2, {
-      yPercent: Math.round(15 + Math.random() * (15 * this.props.blobIntensity)),
+    const { interactive, reversed, isParallax, blobIntensity } = this.props
+    if (interactive && reversed && !isParallax) TweenMax.to(target, 2, {
+      yPercent: Math.round(15 + Math.random() * (15 * blobIntensity)),
       ease: Elastic.easeOut
     })
   }

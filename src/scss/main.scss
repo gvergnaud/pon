@@ -45,6 +45,7 @@ body {
         width: 35px;
 
         &--cross {
+          height: 6px;
           transform: rotateZ(45deg);
         }
       }
@@ -53,8 +54,9 @@ body {
         bottom: 0;
         width: 20px;
         &--cross {
+          height: 6px;
           width: 35px;
-          transform: translateY(-11px) rotateZ(-45deg);
+          transform: translateY(-9px) rotateZ(-45deg);
         }
       }
     }
