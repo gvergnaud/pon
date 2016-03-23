@@ -189,25 +189,25 @@ class JaiyeCaseStudy extends Component {
 
     const secondTl = new TimelineMax()
     secondTl
-      .fromTo(refs.secondTitle, 2.3, {
-        y: -700,
+      .fromTo(refs.secondTitle, 2.5, {
+        y: -650,
       }, {
-        y: -300,
+        y: -200,
         ease: Power1.easeOut
       }, 'second')
       .staggerFrom('.secondSection .wireframe', 1.7, {
-        delay: .2,
+        delay: .4,
         y: 250,
         ease: Power1.easeOut
-      }, 1.2, 'second')
+      }, .6, 'second')
       .staggerFrom('.secondSection .wireframe.odd', 1, {
-        delay: .6,
-        rotation: 10,
+        delay: .8,
+        rotation: 8,
         ease: Power1.easeOut
       }, 1.1, 'second')
       .staggerFrom('.secondSection .wireframe.even', 1, {
-        delay: 1.25,
-        rotation: -10,
+        delay: 1.35,
+        rotation: -8,
         ease: Power1.easeOut
       }, 1, 'second')
 

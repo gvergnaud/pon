@@ -101,40 +101,16 @@ class DylerzCaseStudy extends Component {
 
       tl
         .fromTo(refs.firstTitle, 3, {
-          y: -400,
+          y: -250,
         }, {
-          y: 200,
+          y: 100,
           ease: Power1.easeOut
         }, 'first')
-        .to(refs.computer, 5.5, {
-          delay: 1.7,
-          y: window.innerHeight * 5.8,
-          ease: Power0.easeInOut
+        .to(refs.screen, 3.5, {
+          delay: 1.8,
+          y: -250,
+          ease: Power1.easeOut
         }, 'first')
-        .to(refs.screen, 5.1, {
-          delay: 2,
-          y: - (computerWidth * 2894 / 940) + computerHeight * 2.25,
-          ease: Power1.easeInOut
-        }, 'first')
-        .from(refs.eventsimage, 1.2, {
-          delay: .3,
-          opacity: 0,
-          y: 120,
-          ease: Power4.easeOut
-        }, 'second')
-        .staggerFrom('.pictoContainer .picto', .2, {
-          delay: .3,
-          opacity: 0,
-          scale: .2,
-          ease: Elastic.easeOut
-        }, .03, 'second')
-        .from(refs.menuimage, 1.5, {
-          delay: .5,
-          opacity: 0,
-          y: 170,
-          ease: Power2.easeInOut
-        }, 'second')
-
 
 
       new ScrollMagic.Scene({
@@ -182,6 +158,35 @@ class DylerzCaseStudy extends Component {
 
         })
         .addTo(this.controller)
+
+
+    const tlTwo = new TimelineMax()
+      .from(refs.eventsimage, 1.2, {
+        delay: .1,
+        opacity: 0,
+        y: 120,
+        ease: Power4.easeOut
+      }, 'second')
+      .staggerFrom('.pictoContainer .picto', .2, {
+        delay: .1,
+        opacity: 0,
+        scale: .2,
+        ease: Elastic.easeOut
+      }, .03, 'second')
+      .from(refs.menuimage, 1, {
+        delay: .5,
+        opacity: 0,
+        y: 170,
+        ease: Power2.easeInOut
+      }, 'second')
+
+    new ScrollMagic.Scene({
+      triggerElement: refs.events,
+      offset: - window.innerHeight,
+      duration: tlTwo.totalDuration() * window.innerHeight,
+    })
+      .setTween(tlTwo)
+      .addTo(this.controller)
 
 
     new ScrollMagic.Scene({
@@ -277,21 +282,20 @@ class DylerzCaseStudy extends Component {
             ref="showcase"
             className="Dylerz-showCase">
 
-            <div style={{ height: window.innerHeight * 7 }}>
-              <div
-                ref="computer"
-                className="Dylerz-showCase-computer"
-                style={this._getComputerStyle()}>
-                <div className="Dylerz-showCase-computer-device" />
-                <span className="Dylerz-showCase-computer-screenOverflow">
-                  <span ref="screen" className="Dylerz-showCase-computer-screenContainer">
-                    <UIImage
-                      className="Dylerz-showCase-computer-screen"
-                      height={2800}
-                      width={900}
-                      src="/public/assets/images/03_DYLERZ/01_Homepage@2x.jpg" />
-                  </span>
-                </span>
+
+            <div
+              ref="computer"
+              className="Dylerz-showCase-computer">
+              <UIImage
+                className="Dylerz-showCase-computer-device"
+                src="/public/assets/images/03_DYLERZ/macbook@2x.png" />
+
+              <div ref="screen">
+                <UIImage
+                  className="Dylerz-showCase-computer-screen"
+                  height={2800}
+                  width={900}
+                  src="/public/assets/images/03_DYLERZ/01_Homepage@2x.jpg" />
               </div>
             </div>
 
