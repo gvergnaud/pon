@@ -12,12 +12,15 @@
 
   &-blobContainer {
     position: absolute;
-    top: -850px;
-    left: -60px;
     width: 1280px;
-    height: 1360px;
+    height: 100%;
     overflow: hidden;
     z-index: -1;
+
+    .BlobBackground {
+      height: 100% !important;
+      top: -85%;
+    }
 
     .blob, .antiBlob {
       border-radius: 120px !important;
@@ -25,7 +28,7 @@
   }
 
   &-content {
-    margin: 300px auto 0;
+    margin: 290px auto 0;
     max-width: 400px;
     padding: 40px;
     z-index: 10;

@@ -10,9 +10,25 @@ class Mobile extends Component {
 
   }
 
+  componentDidMount() {
+    this.willAnimateIn(this)
+  }
+
+  willAnimateIn({ refs }) {
+    TweenMax.staggerFromTo('.Mobile-content p, .Mobile-content li', .3, {
+      opacity: 0,
+      y: 20,
+    }, {
+      opacity: 1,
+      y: 0,
+      delay: .7,
+      ease: Power2.easeOut
+    }, .2)
+  }
+
   render() {
     return (
-      <div className="Mobile">
+      <div className="Mobile" ref="element">
         <div className="Mobile-blobContainer">
           <BlobBackground color={'#FFB400'} isBlob blobIntensity={0.1} />
         </div>
