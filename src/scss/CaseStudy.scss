@@ -45,13 +45,14 @@
 
   &-scrollButton {
     position: absolute;
-    color: white;
-    bottom: 8%;
-    right: 170px;
+    bottom: 130px;
+    right: 15%;
     text-shadow: shadow();
     z-index: 2;
-    font-size: 14px;
+    font-family: $font-title;
     text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: 800;
 
     animation: fadeIn .4s ease ;
   }

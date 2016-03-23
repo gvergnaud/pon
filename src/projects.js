@@ -1,7 +1,7 @@
 export default {
   rochard: {
     title: 'Appartement Rochard',
-    color: '#FFFA00',
+    color: '#FFEA00',
     path: '/appartement-rochard',
   },
   jaiye: {

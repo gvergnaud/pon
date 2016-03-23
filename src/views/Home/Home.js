@@ -98,7 +98,7 @@ class Home extends Component {
       }, {
         scale: 1,
         opacity: 1,
-        textShadow: "0 5px 10px rgba(0,0,0, .25)",
+        textShadow: "0 5px 10px rgba(0,0,0, .2)",
         ease: Elastic.easeOut.config(1),
         delay: .15
       })

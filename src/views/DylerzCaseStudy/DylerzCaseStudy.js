@@ -234,7 +234,7 @@ class DylerzCaseStudy extends Component {
             style={{ color }}>
             {title}
           </h1>
-          <div className="CaseStudy-scrollButton">
+          <div className="CaseStudy-scrollButton" style={{ color }}>
             scroll
           </div>
           <BlobBackground isBlob={blob} color={color} />
@@ -327,7 +327,7 @@ class DylerzCaseStudy extends Component {
                   <div className="picto">•</div>
                   <div className="picto">•</div>
                   <div className="picto">•</div>
-                  <div className="picto triangle" style={{ color }}>▼</div>
+                  <div className="picto triangle">▼</div>
                   <div className="picto">•</div>
                 </div>
                 <div className="picto-row">

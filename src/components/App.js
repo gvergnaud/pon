@@ -26,7 +26,7 @@ class App extends Component {
     isMenuOpened: false,
     isAtTop: true,
     showColor: false,
-    isLoaded: false,
+    isLoaded: true,
   }
 
   getChildContext() {

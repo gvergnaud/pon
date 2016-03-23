@@ -243,7 +243,7 @@ class JaiyeCaseStudy extends Component {
             style={{ color }}>
             {title}
           </h1>
-          <div className="CaseStudy-scrollButton">
+          <div className="CaseStudy-scrollButton" style={{ color }}>
             scroll
           </div>
           <BlobBackground isBlob={blob} color={color} />
