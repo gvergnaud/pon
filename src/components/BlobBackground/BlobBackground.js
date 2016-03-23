@@ -36,7 +36,7 @@ class BlobBackground extends Component {
       ...[...this.refs.blobContainer.childNodes].map((el, i) =>
         TweenMax.to(el, 2.3, {
           yPercent: reversed
-            ? - Math.round(12 + Math.random() * (7 * blobIntensity))
+            ? - Math.round(11 + Math.random() * (7 * blobIntensity))
             : Math.round(12 + Math.random() * (15 * blobIntensity)),
           ease: isParallax ? Back.easeOut : Elastic.easeOut
         })
@@ -45,7 +45,7 @@ class BlobBackground extends Component {
         TweenMax.to(el, 2.3, {
           yPercent: reversed
             ? Math.round(12 + Math.random() * (15 * blobIntensity))
-            : - Math.round(12 + Math.random() * (7 * blobIntensity)),
+            : - Math.round(11 + Math.random() * (7 * blobIntensity)),
           ease: isParallax ? Back.easeOut : Elastic.easeOut
         })
       )

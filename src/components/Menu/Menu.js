@@ -129,7 +129,7 @@ class Menu extends Component {
 
             <div className="Menu-content-social" onClick={this.stopPropagation}>
               <div className="col">
-                <a target="_blank" href="mailto:michael.ponrajah@hetic.net">Email</a>
+                <a href="mailto:michael.ponrajah@hetic.net">Email</a>
                 <a target="_blank" href="https://pinterest.com">Pinterest</a>
               </div>
               <div className="col">
