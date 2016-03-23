@@ -24,9 +24,15 @@ class Home extends Component {
   static contextTypes = {
     setPage: PropTypes.func.isRequired,
     setCurrentProject: PropTypes.func.isRequired,
+    getCurrentProject: PropTypes.func.isRequired,
   }
 
   state = { selectedProj: 'rochard' }
+
+  componentWillMount() {
+    const currentProject = this.context.getCurrentProject()
+    this.setState({ selectedProj: currentProject ? currentProject.name : 'rochard' })
+  }
 
   componentDidMount() {
     this.context.setCurrentProject(projects[this.state.selectedProj])
@@ -52,19 +58,19 @@ class Home extends Component {
   }
 
   willAnimateIn({ refs }) {
-    TweenMax.set(mapValues(refs, x => x), { opacity: 0 })
-    TweenMax.set(mapValues(refs, x => x.querySelector('.Home-title')), {
+    TweenMax.set([refs.jaiye, refs.rochard, refs.dylerz ], { opacity: 0 })
+    TweenMax.set([refs.jaiye, refs.rochard, refs.dylerz ].map(x => x.querySelector('.Home-title')), {
       opacity: 0,
       textShadow: "0 0 0 rgba(0,0,0,0)",
       scale: .8,
     })
 
-    TweenMax.fromTo(refs.element, .6, {
+    TweenMax.fromTo(refs.blob, .8, {
       opacity: 1,
-      xPercent: -100,
+      yPercent: -135,
     }, {
-      xPercent: 0,
-      ease: Power3.easeInOut,
+      yPercent: 0,
+      ease: Power2.easeIn,
       onComplete: () => this.animateProjectIn(refs[this.state.selectedProj])
     })
   }
@@ -117,7 +123,7 @@ class Home extends Component {
         textShadow: "0px 0px 0px rgba(0,0,0, 0)",
         ease: Back.easeIn.config(4)
       })
-      .to(project, .2, {
+      .to(project, .37, {
         opacity: 0
       })
 
@@ -129,6 +135,9 @@ class Home extends Component {
     let _lastScroll = 0
 
     return e => {
+      e.preventDefault()
+      e.stopPropagation()
+
       _thisScroll = Date.now()
 
       if ((_thisScroll - _lastScroll) > 100) this.selectNext()
@@ -169,7 +178,9 @@ class Home extends Component {
     return (
       <div className="Home" ref="element" onClick={this.selectNext}>
 
-        <BlobBackground color={selectedColor} />
+        <div ref="blob">
+          <BlobBackground color={selectedColor} isBlob />
+        </div>
 
         {mapValues(projects, ({title, path, color}, key) => {
           const isSelected = selectedProj === key
@@ -185,7 +196,11 @@ class Home extends Component {
                 {title}
               </h1>
 
-              <Ripple delay={true} className="Home-ripple" isAnimated={isSelected} color={color} />
+              <Ripple
+                delay={true}
+                className="Home-ripple"
+                isAnimated={isSelected}
+                color={color} />
 
               <div
                 className={`Home-goButton ${isSelected ? 'Home-goButton--selected' : ''}`}
@@ -197,6 +212,13 @@ class Home extends Component {
                 }}>
                 Go
               </div>
+
+              <Ripple
+                infinite={true}
+                delay={true}
+                className="Home-buttonRipple"
+                isAnimated={isSelected}
+                color={color} />
 
             </div>
           )

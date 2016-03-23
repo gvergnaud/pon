@@ -23,6 +23,7 @@ class DylerzCaseStudy extends Component {
   static contextTypes = {
     setPage: PropTypes.func.isRequired,
     setCurrentProject: PropTypes.func.isRequired,
+    getCurrentColor: PropTypes.func.isRequired,
   }
 
   state = { blob: false, bottomBlob: true, isRippleAnimated: false, isMenuRippleAnimated: false }
@@ -220,11 +221,16 @@ class DylerzCaseStudy extends Component {
         height: window.innerHeight - 50,
         width: (window.innerHeight - 50) * 2600 / 1560
       }
-
     }
+  }
 
-
-
+  onClose = () => {
+    TweenMax.to(this.refs.element, .2, {
+      opacity: 0,
+      y: 100,
+      ease: Power1.easeIn,
+      onComplete: () => this.context.setPage('/')
+    })
   }
 
   render() {
@@ -232,7 +238,7 @@ class DylerzCaseStudy extends Component {
     const { blob, bottomBlob, isRippleAnimated, isMenuRippleAnimated } = this.state
 
     return (
-      <div className="Dylerz CaseStudy">
+      <div className="Dylerz CaseStudy" ref="element">
         <div className="CaseStudy-blob" ref="topBlob" style={{ height: window.innerHeight * 1 }}>
           <h1
             className="CaseStudy-title projectTitle"
@@ -243,6 +249,11 @@ class DylerzCaseStudy extends Component {
             scroll
           </div>
           <BlobBackground isBlob={blob} color={color} />
+        </div>
+
+
+        <div className="App-navigation-contact" style={{ color: this.context.getCurrentColor() }} onClick={this.onClose}>
+          Close
         </div>
 
         <div className="CaseStudy-container" ref="container">

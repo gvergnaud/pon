@@ -17,7 +17,9 @@ class App extends Component {
 
   static childContextTypes = {
     setPage: PropTypes.func.isRequired,
-    setCurrentProject: PropTypes.func.isRequired
+    setCurrentProject: PropTypes.func.isRequired,
+    getCurrentProject: PropTypes.func.isRequired,
+    getCurrentColor: PropTypes.func.isRequired,
   }
 
   state = {
@@ -26,13 +28,15 @@ class App extends Component {
     isMenuOpened: false,
     isAtTop: true,
     showColor: false,
-    isLoaded: true,
+    isLoaded: false,
   }
 
   getChildContext() {
     return {
       setPage: this.setPage,
-      setCurrentProject: this.setCurrentProject
+      setCurrentProject: this.setCurrentProject,
+      getCurrentProject: this.getCurrentProject,
+      getCurrentColor: this.getCurrentColor,
     }
   }
 
@@ -87,6 +91,8 @@ class App extends Component {
     this.setState({ currentProject })
   }
 
+  getCurrentProject = () => this.state.currentProject
+
   toggleOpenMenu = () => {
     if (this.state.isMenuOpened) {
       this.refs.menu.constructor.prototype.willAnimateOut.call(this.refs.menu, () => {
@@ -97,7 +103,7 @@ class App extends Component {
     }
   }
 
-  getColor = () => {
+  getCurrentColor = () => {
     const { currentProject, showColor, isMenuOpened } = this.state
     return !showColor && isMenuOpened && currentProject
       ? currentProject.color
@@ -156,39 +162,35 @@ class App extends Component {
               <div className="App-navigation-menuIcon" onClick={this.toggleOpenMenu}>
                 <div
                   className={`App-navigation-menuIcon-before ${isMenuOpened ? 'App-navigation-menuIcon-before--cross' : ''}`}
-                  style={{ backgroundColor: this.getColor() }} />
+                  style={{ backgroundColor: this.getCurrentColor() }} />
                 <div
                   className={`App-navigation-menuIcon-after  ${isMenuOpened ? 'App-navigation-menuIcon-after--cross' : ''}`}
-                  style={{ backgroundColor: this.getColor() }} />
+                  style={{ backgroundColor: this.getCurrentColor() }} />
               </div>
 
               <div className={`App-navigation-name ${!isAtTop ? 'App-navigation-name--hidden' : ''}`}>
                 Portfolio 2016 - 2017
               </div>
 
-              <div className="App-navigation-contact" style={{ color: this.getColor() }}>
-                <a href="mailto:micheal.ponrajah@hetic.net">Contact me</a>
-              </div>
-
               <div className="App-navigation-projectCursor" onClick={() => this.setPage('/')}>
                 <div
                   className="cursor"
                   style={{
-                    backgroundColor: this.getColor(),
+                    backgroundColor: this.getCurrentColor(),
                     transform: `translateY(${this.getCursorTranslate()})`
                   }} />
                 <div
                   className="point point-first"
-                  style={{ backgroundColor: this.getColor() }} />
+                  style={{ backgroundColor: this.getCurrentColor() }} />
                 <div
                   className="point point-second"
-                  style={{ backgroundColor: this.getColor() }} />
+                  style={{ backgroundColor: this.getCurrentColor() }} />
                 <div
                   className="point point-third"
-                  style={{ backgroundColor: this.getColor() }} />
+                  style={{ backgroundColor: this.getCurrentColor() }} />
                 <div
                   className="point point-fourth"
-                  style={{ backgroundColor: this.getColor() }} />
+                  style={{ backgroundColor: this.getCurrentColor() }} />
               </div>
             </nav>
 

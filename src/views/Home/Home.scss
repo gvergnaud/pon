@@ -57,6 +57,15 @@
     z-index: -1;
   }
 
+  &-buttonRipple {
+    position: absolute !important;
+    width: 75px !important;
+    height: 75px !important;
+    bottom: 125px;
+    right: 16%;
+    z-index: -1;
+  }
+
   &-goButton {
     position: absolute;
     bottom: 100px;
@@ -81,7 +90,7 @@
     transform: scale(.5);
     box-shadow: 0 0 0 rgba(black, 0);
     text-shadow: 0 0 0 rgba(black, 0);
-    transition: .6s $ease-in-out-bounce 1.15s;
+    transition: .6s $ease-in-out-bounce .35s;
 
     &:after {
       content: '';
@@ -95,7 +104,7 @@
 
       box-shadow: 0 0 0 rgba(black, 0);
 
-      transition: .6s $ease-in-out-bounce 1.15s;
+      transition: .6s $ease-in-out-bounce .35s;
       transform: translate(-50%, -50%) scale(.5);
     }
 
@@ -111,10 +120,12 @@
       text-shadow: shadow();
       transform: scale(1);
       opacity: 1;
+      transition-delay:  1.15s;
 
       &:after {
         box-shadow: 0 7px 10px rgba(black, .2);
         transform: translate(-50%, -50%) scale(1);
+        transition-delay:  1.15s;
       }
 
       &:hover {
@@ -146,6 +157,7 @@
     right: 15%;
     width: 100px;
     height: 100px;
+    opacity: 0;
 
     border-radius: 100%;
     box-shadow: 0 7px 10px rgba(black, .2);

@@ -8,16 +8,17 @@ class Ripple extends Component {
     style: PropTypes.object,
     className: PropTypes.string,
     color: PropTypes.string,
-    delay: PropTypes.bool
+    delay: PropTypes.bool,
+    infinite: PropTypes.bool,
   }
 
   render() {
-    const { delay, isAnimated, style, className, color } = this.props
+    const { delay, infinite, isAnimated, style, className, color } = this.props
     return (
       <div className={`Ripple ${className}`} style={style}>
-        <div className={`Ripple-wave first ${delay ? 'delay' : ''} ${isAnimated ? 'Ripple-wave--animated' : ''}`} />
-        <div className={`Ripple-wave second ${delay ? 'delay' : ''} ${isAnimated ? 'Ripple-wave--animated' : ''}`} />
-        <div className={`Ripple-wave third ${delay ? 'delay' : ''} ${isAnimated ? 'Ripple-wave--animated' : ''}`} />
+        <div className={` Ripple-wave first ${delay ? 'delay' : ''} ${infinite ? 'infinite' : ''} ${isAnimated ? 'Ripple-wave--animated' : ''}`} />
+        <div className={` Ripple-wave second ${delay ? 'delay' : ''} ${infinite ? 'infinite' : ''} ${isAnimated ? 'Ripple-wave--animated' : ''}`} />
+        <div className={`Ripple-wave third ${delay ? 'delay' : ''} ${infinite ? 'infinite' : ''} ${isAnimated ? 'Ripple-wave--animated' : ''}`} />
       </div>
     )
   }

@@ -23,6 +23,7 @@ class RochardCaseStudy extends Component {
   static contextTypes = {
     setPage: PropTypes.func.isRequired,
     setCurrentProject: PropTypes.func.isRequired,
+    getCurrentColor: PropTypes.func.isRequired,
   }
 
   state = { blob: false, bottomBlob: true, isRippleAnimated: false, isFriendRippleAnimated: false }
@@ -187,13 +188,22 @@ class RochardCaseStudy extends Component {
     this.controller.destroy()
   }
 
+  onClose = () => {
+    TweenMax.to(this.refs.element, .2, {
+      opacity: 0,
+      y: 100,
+      ease: Power1.easeIn,
+      onComplete: () => this.context.setPage('/')
+    })
+  }
+
   render() {
 
     const { color, title } = project
     const { blob, bottomBlob, isRippleAnimated, isFriendRippleAnimated } = this.state
 
     return (
-      <div className="Rochard CaseStudy">
+      <div className="Rochard CaseStudy" ref="element">
         <div className="CaseStudy-blob" ref="topBlob" style={{ height: window.innerHeight }}>
           <h1
             className="CaseStudy-title projectTitle"
@@ -204,6 +214,10 @@ class RochardCaseStudy extends Component {
             scroll
           </div>
           <BlobBackground isBlob={blob} color={color} />
+        </div>
+
+        <div className="App-navigation-contact" style={{ color: this.context.getCurrentColor() }} onClick={this.onClose}>
+          Close
         </div>
 
         <div className="CaseStudy-container" ref="container">

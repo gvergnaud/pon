@@ -46,6 +46,11 @@
     box-shadow: 0 7px 10px rgba(black, .05);
     transform: scale(0);
 
+    &.infinite {
+      animation-iteration-count: infinite;
+      animation-duration: 3s;
+    }
+
     &.first {
       // left: -50%;
     }
