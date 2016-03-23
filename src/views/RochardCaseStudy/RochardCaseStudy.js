@@ -89,7 +89,7 @@ class RochardCaseStudy extends Component {
         this.setState({ isRippleAnimated: true })
 
         setTimeout(() => {
-          if (getScrollTop() + window.innerHeight > getDocumentHeight() - 20) {
+          if (getScrollTop() + window.innerHeight > getDocumentHeight() - 100) {
             this.context.setPage(nextProj.path)
           }
         }, 1500)

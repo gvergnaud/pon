@@ -172,7 +172,7 @@ class App extends Component {
                 Portfolio 2016 - 2017
               </div>
 
-              <div className="App-navigation-projectCursor" onClick={() => this.setPage('/')}>
+              <div className="App-navigation-projectCursor">
                 <div
                   className="cursor"
                   style={{

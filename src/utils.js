@@ -1,11 +1,7 @@
 export const mapValues = (obj, mapper) => Object.keys(obj).map((key) => mapper(obj[key], key))
 
 
-export const getDocumentHeight = () => Math.max(
-  document.body.scrollHeight, document.documentElement.scrollHeight,
-  document.body.offsetHeight, document.documentElement.offsetHeight,
-  document.body.clientHeight, document.documentElement.clientHeight
-)
+export const getDocumentHeight = () => Math.max(document.body.scrollHeight, document.documentElement.scrollHeight)
 
 
 export const getScrollTop = () => {
