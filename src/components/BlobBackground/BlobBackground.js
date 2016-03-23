@@ -134,6 +134,10 @@ class BlobBackground extends Component {
               className={`blob ${isBlob ? 'shadow' : ''} ${reversed ? 'blob--reversed' : ''}`}
               style={{ backgroundColor: color, borderRadius: window.innerWidth * 6.25 / 100 }}
               onMouseEnter={this.touchBlob} />
+            <div
+              className={`blob ${isBlob ? 'shadow' : ''} ${reversed ? 'blob--reversed' : ''}`}
+              style={{ backgroundColor: color, borderRadius: window.innerWidth * 6.25 / 100 }}
+              onMouseEnter={this.touchBlob} />
           </div>
 
           <div className={`flex antiBlobContainer ${reversed ? 'antiBlobContainer--reversed' : ''}`} ref="antiBlobContainer">
